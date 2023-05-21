@@ -1,0 +1,84 @@
+{
+  "env": {
+    "browser": true,
+    "node": true,
+    "es2022": true
+  },
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaVersion": 2022,
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": true
+    }
+  },
+  "plugin": ["react", "prettier", "@typescript-eslint"],
+  "extends": [
+    "next/core-web-vitals", 
+    "plugin:prettier/recommended",
+    "plugin:react/recommended",
+    "plugin:@typescript-eslint/recommended",
+    "airbnb-typescript",
+    "airbnb/hooks"
+  ],
+  "rules": {
+    "jsx-a11y/label-has-associated-control": [
+      "error",
+      {
+        "required": {
+          "some": ["nesting", "id"]
+        }
+      }
+    ],
+    "jsx-a11y/label-has-for": [
+      "error",
+      {
+        "required": {
+          "some": ["nesting", "id"]
+        }
+      }
+    ],
+    "no-unused-vars": [2, { "vars": "all", "args": "after-used" }],
+    "react/jsx-filename-extension": [1, { "extensions": [".ts", ".tsx"] }],
+    "import/extensions": "off",
+    "react/prop-types": "off",
+    "jsx-a11y/anchor-is-valid": "off",
+    "react/jsx-key": "off",
+    "react/jsx-props-no-spreading": ["error", { "custom": "ignore" }],
+    "prettier/prettier": "error",
+    "react/no-unescaped-entities": "off",
+    "import/no-cycle": [0, { "ignoreExternal": true }],
+    "prefer-const": "off",
+    "camelcase": "off",
+    // needed because of https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/no-use-before-define.md#how-to-use & https://stackoverflow.com/questions/63818415/react-was-used-before-it-was-defined
+    "no-use-before-define": "off",
+    "@typescript-eslint/no-use-before-define": [
+      "error",
+      { "functions": false, "classes": false, "variables": true }
+    ],
+    "import/order": [
+      "error",
+      {
+        "groups": [
+          "external",
+          "builtin",
+          "internal",
+          ["parent", "sibling", "index"]
+        ],
+        "newlines-between": "always"
+      }
+    ],
+    "eol-last": 1,
+    "no-multiple-empty-lines": ["error", { "max": 1, "maxEOF": 0 }],
+    "import/default": "off",
+    "sort-imports": [
+      "error",
+      {
+        "ignoreCase": false,
+        "ignoreDeclarationSort": true,
+        "ignoreMemberSort": false,
+        "memberSyntaxSortOrder": ["none", "all", "single", "multiple"]
+      }
+    ]
+  }
+}
