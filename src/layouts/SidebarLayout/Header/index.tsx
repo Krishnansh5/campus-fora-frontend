@@ -9,7 +9,8 @@ import {
   IconButton,
   Tooltip,
   styled,
-  useTheme
+  useTheme,
+  Typography
 } from '@mui/material';
 import MenuTwoToneIcon from '@mui/icons-material/MenuTwoTone';
 import { SidebarContext } from 'src/contexts/SidebarContext';
@@ -18,6 +19,7 @@ import CloseTwoToneIcon from '@mui/icons-material/CloseTwoTone';
 import HeaderButtons from './Buttons';
 import HeaderUserbox from './Userbox';
 import HeaderMenu from './Menu';
+import { userInfo } from '..';
 
 const HeaderWrapper = styled(Box)(
   ({ theme }) => `
@@ -38,7 +40,7 @@ const HeaderWrapper = styled(Box)(
 `
 );
 
-function Header() {
+function Header({user}: {user: userInfo}) {
   const { sidebarToggle, toggleSidebar } = useContext(SidebarContext);
   const theme = useTheme();
 
@@ -50,29 +52,42 @@ function Header() {
         boxShadow:
           theme.palette.mode === 'dark'
             ? `0 1px 0 ${alpha(
-                lighten(theme.colors.primary.main, 0.7),
-                0.15
-              )}, 0px 2px 8px -3px rgba(0, 0, 0, 0.2), 0px 5px 22px -4px rgba(0, 0, 0, .1)`
+              lighten(theme.colors.primary.main, 0.7),
+              0.15
+            )}, 0px 2px 8px -3px rgba(0, 0, 0, 0.2), 0px 5px 22px -4px rgba(0, 0, 0, .1)`
             : `0px 2px 8px -3px ${alpha(
-                theme.colors.alpha.black[100],
-                0.2
-              )}, 0px 5px 22px -4px ${alpha(
-                theme.colors.alpha.black[100],
-                0.1
-              )}`
+              theme.colors.alpha.black[100],
+              0.2
+            )}, 0px 5px 22px -4px ${alpha(
+              theme.colors.alpha.black[100],
+              0.1
+            )}`
       }}
     >
-      <Stack
+      {/* <Stack
         direction="row"
         divider={<Divider orientation="vertical" flexItem />}
         alignItems="center"
         spacing={2}
       >
         <HeaderMenu />
-      </Stack>
+      </Stack> */}
+      <Typography 
+        variant='h3' 
+        noWrap 
+        sx={{
+          mr: 2,
+          fontWeight: 700,
+          letterSpacing: '.3rem',
+          color: 'inherit',
+          textDecoration: 'none',
+        }}
+      >
+        Campus Fora
+      </Typography>
       <Box display="flex" alignItems="center">
         <HeaderButtons />
-        <HeaderUserbox />
+        <HeaderUserbox userInfo={user}/>
         <Box
           component="span"
           sx={{

@@ -9,13 +9,14 @@ import {
   styled,
   Divider,
   useTheme,
-  Button,
   lighten,
   darken
 } from '@mui/material';
 
 import SidebarMenu from './SidebarMenu';
 import Logo from 'src/components/LogoSign';
+import { fields } from '..';
+
 
 const SidebarWrapper = styled(Box)(
   ({ theme }) => `
@@ -29,7 +30,7 @@ const SidebarWrapper = styled(Box)(
 `
 );
 
-function Sidebar() {
+function Sidebar({items}: {items: fields}) {
   const { sidebarToggle, toggleSidebar } = useContext(SidebarContext);
   const closeSidebar = () => toggleSidebar();
   const theme = useTheme();
@@ -54,7 +55,7 @@ function Sidebar() {
         }}
       >
         <Scrollbar>
-          <Box mt={3}>
+          {/* <Box mt={3}>
             <Box
               mx={2}
               sx={{
@@ -63,34 +64,21 @@ function Sidebar() {
             >
               <Logo />
             </Box>
-          </Box>
+          </Box> */}
           <Divider
             sx={{
-              mt: theme.spacing(3),
+              mt: theme.spacing(9),
               mx: theme.spacing(2),
-              background: theme.colors.alpha.trueWhite[10]
+              background: theme.colors.alpha.trueWhite[1]
             }}
           />
-          <SidebarMenu />
+          <SidebarMenu items={items}/>
         </Scrollbar>
         <Divider
           sx={{
             background: theme.colors.alpha.trueWhite[10]
           }}
         />
-        <Box p={2}>
-          <Button
-            href="https://bloomui.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            variant="contained"
-            color="success"
-            size="small"
-            fullWidth
-          >
-            Upgrade to PRO
-          </Button>
-        </Box>
       </SidebarWrapper>
       <Drawer
         sx={{
@@ -128,7 +116,7 @@ function Sidebar() {
                 background: theme.colors.alpha.trueWhite[10]
               }}
             />
-            <SidebarMenu />
+            <SidebarMenu items={items}/>
           </Scrollbar>
         </SidebarWrapper>
       </Drawer>

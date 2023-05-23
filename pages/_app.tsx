@@ -25,7 +25,7 @@ interface TokyoAppProps extends AppProps {
   Component: NextPageWithLayout;
 }
 
-function TokyoApp(props: TokyoAppProps) {
+function App(props: TokyoAppProps) {
   const { Component, emotionCache = clientSideEmotionCache, pageProps } = props;
   const getLayout = Component.getLayout ?? ((page) => page);
 
@@ -36,7 +36,7 @@ function TokyoApp(props: TokyoAppProps) {
   return (
     <CacheProvider value={emotionCache}>
       <Head>
-        <title>Tokyo Free Black NextJS Typescript Admin Dashboard</title>
+        <title>Campus Fora</title>
         <meta
           name="viewport"
           content="width=device-width, initial-scale=1, shrink-to-fit=no"
@@ -54,4 +54,4 @@ function TokyoApp(props: TokyoAppProps) {
   );
 }
 
-export default TokyoApp;
+export default App;

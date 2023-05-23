@@ -1,8 +1,10 @@
 import { useState, ReactNode, createContext } from 'react';
 type SidebarContext = {
   sidebarToggle: any;
+  currentTopic: string;
   toggleSidebar: () => void;
   closeSidebar: () => void;
+  setCurrentTopic: (topic: string) => void;
 };
 
 // eslint-disable-next-line @typescript-eslint/no-redeclare
@@ -16,6 +18,7 @@ type Props = {
 
 export function SidebarProvider({ children }: Props) {
   const [sidebarToggle, setSidebarToggle] = useState(false);
+  const [currentTopic, setCurrentTopic] = useState('' as string);
   const toggleSidebar = () => {
     setSidebarToggle(!sidebarToggle);
   };
@@ -26,7 +29,7 @@ export function SidebarProvider({ children }: Props) {
 
   return (
     <SidebarContext.Provider
-      value={{ sidebarToggle, toggleSidebar, closeSidebar }}
+      value={{ sidebarToggle, currentTopic, toggleSidebar, closeSidebar, setCurrentTopic }}
     >
       {children}
     </SidebarContext.Provider>

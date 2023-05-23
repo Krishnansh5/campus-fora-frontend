@@ -3,7 +3,8 @@
     "baseUrl": ".",
     "paths": {
       "@/*": ["./src/*"],
-      "@/public/*": ["./public/*"]
+      "@/public/*": ["./public/*"],
+      "@/store/*": ["./store/*"],
     },
     "allowJs": true,
     "allowSyntheticDefaultImports": true,
