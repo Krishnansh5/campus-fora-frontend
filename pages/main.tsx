@@ -1,3 +1,4 @@
+import React from 'react';
 import Head from 'next/head';
 import { ChangeEvent, useState } from 'react';
 import {
@@ -116,6 +117,7 @@ function Home() {
     { value: 'taskSearch', label: 'Task Search' }
   ];
 
+  // eslint-disable-next-line @typescript-eslint/ban-types
   const handleTabsChange = (_event: ChangeEvent<{}>, value: string): void => {
     setCurrentTab(value);
   };

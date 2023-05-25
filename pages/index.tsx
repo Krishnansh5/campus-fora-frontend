@@ -1,3 +1,4 @@
+import React from 'react';
 import { ReactElement, useEffect } from 'react';
 import { useRouter } from 'next/router';
 
@@ -13,7 +14,7 @@ function Index() {
     if (router.isReady) {
       sendToMainPage();
     }
-  }, []);
+  }, [router]);
   return <div />;
 }
 

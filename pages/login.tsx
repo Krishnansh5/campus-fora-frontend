@@ -1,3 +1,4 @@
+import React from 'react';
 import { useForm } from 'react-hook-form';
 import { useEffect, useState } from 'react';
 import {
@@ -42,13 +43,14 @@ function Login() {
   });
 
   const { setToken, setRole, setName, setUserID } = useStore();
+  const { setToken, setRole, setName, setUserID } = useStore();
 
   useEffect(() => {
     setToken('');
     setRole(0);
     setName('');
     setUserID('');
-  }, []);
+  }, [setName, setRole, setToken, setUserID]);
 
   const onLogin = async (data: LoginParams) => {
     setLoading(true);

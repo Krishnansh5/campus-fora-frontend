@@ -11,9 +11,9 @@
     "project": ["tsconfig.json"],
     "ecmaFeatures": {
       "jsx": true
-    }
+    },
+    "project": "tsconfig.json"
   },
-  "plugins": ["react", "prettier", "@typescript-eslint"],
   "extends": [
     "next/core-web-vitals", 
     "plugin:prettier/recommended",
@@ -51,7 +51,9 @@
     "import/no-cycle": [0, { "ignoreExternal": true }],
     "prefer-const": "off",
     "camelcase": "off",
-    "react/react-in-jsx-scope": "off",
+    "@typescript-eslint/comma-dangle": ["error", "never"],
+    "@typescript-eslint/indent": "off",
+    // needed because of https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/no-use-before-define.md#how-to-use & https://stackoverflow.com/questions/63818415/react-was-used-before-it-was-defined
     "no-use-before-define": "off",
     "comma-dangle": "off",
     "@typescript-eslint/comma-dangle": "off",
