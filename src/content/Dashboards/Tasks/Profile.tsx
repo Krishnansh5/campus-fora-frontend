@@ -1,14 +1,14 @@
 import {
-  Typography,
-  Tooltip,
-  Rating,
-  IconButton,
-  Divider,
+  Avatar,
   Box,
+  Divider,
+  IconButton,
+  List,
   ListItem,
   ListItemText,
-  List,
-  Avatar,
+  Rating,
+  Tooltip,
+  Typography,
   useTheme
 } from '@mui/material';
 import PhoneTwoToneIcon from '@mui/icons-material/PhoneTwoTone';

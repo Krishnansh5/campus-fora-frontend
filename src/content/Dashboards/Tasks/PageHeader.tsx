@@ -1,10 +1,10 @@
 import {
-  Typography,
-  Button,
+  Avatar,
   Box,
+  Button,
+  Typography,
   alpha,
   lighten,
-  Avatar,
   styled
 } from '@mui/material';
 import DocumentScannerTwoToneIcon from '@mui/icons-material/DocumentScannerTwoTone';

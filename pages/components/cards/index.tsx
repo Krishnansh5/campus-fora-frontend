@@ -1,21 +1,15 @@
 import Head from 'next/head';
-import SidebarLayout from '@/layouts/SidebarLayout';
 import { useState } from 'react';
-
-import PageTitle from '@/components/PageTitle';
-import PageTitleWrapper from '@/components/PageTitleWrapper';
 import {
-  Container,
-  Grid,
   Card,
-  CardHeader,
   CardContent,
-  Divider
+  CardHeader,
+  Container,
+  Divider,
+  Grid
 } from '@mui/material';
-import Footer from 'src/components/Footer';
 import CardActions from '@mui/material/CardActions';
 import { styled } from '@mui/material/styles';
-
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
 import CardMedia from '@mui/material/CardMedia';
@@ -28,6 +22,11 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 import ShareIcon from '@mui/icons-material/Share';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
+
+import Footer from 'src/components/Footer';
+import PageTitleWrapper from '@/components/PageTitleWrapper';
+import PageTitle from '@/components/PageTitle';
+import SidebarLayout from '@/layouts/SidebarLayout';
 
 interface ExpandMoreProps extends IconButtonProps {
   expand: boolean;

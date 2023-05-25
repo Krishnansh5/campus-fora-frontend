@@ -1,21 +1,21 @@
 import Head from 'next/head';
-import SidebarLayout from '@/layouts/SidebarLayout';
 import { ChangeEvent, useState } from 'react';
-import PageHeader from '@/content/Dashboards/Tasks/PageHeader';
-import Footer from '@/components/Footer';
 import {
+  Box,
+  Card,
+  Container,
+  Divider,
   Grid,
   Tab,
   Tabs,
-  Divider,
-  Container,
-  Card,
-  Box,
-  useTheme,
-  styled
+  styled,
+  useTheme
 } from '@mui/material';
-import PageTitleWrapper from '@/components/PageTitleWrapper';
 
+import SidebarLayout from '@/layouts/SidebarLayout';
+import PageHeader from '@/content/Dashboards/Tasks/PageHeader';
+import Footer from '@/components/Footer';
+import PageTitleWrapper from '@/components/PageTitleWrapper';
 import TeamOverview from '@/content/Dashboards/Tasks/TeamOverview';
 import TasksAnalytics from '@/content/Dashboards/Tasks/TasksAnalytics';
 import Performance from '@/content/Dashboards/Tasks/Performance';

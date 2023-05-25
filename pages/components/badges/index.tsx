@@ -1,18 +1,13 @@
 import Head from 'next/head';
-import SidebarLayout from '@/layouts/SidebarLayout';
-import PageTitle from '@/components/PageTitle';
-import PageTitleWrapper from '@/components/PageTitleWrapper';
 import {
-  Container,
-  Grid,
   Card,
-  CardHeader,
   CardContent,
-  Divider
+  CardHeader,
+  Container,
+  Divider,
+  Grid
 } from '@mui/material';
 import { useState } from 'react';
-import Footer from 'src/components/Footer';
-
 import ButtonGroup from '@mui/material/ButtonGroup';
 import Button from '@mui/material/Button';
 import AddIcon from '@mui/icons-material/Add';
@@ -20,10 +15,14 @@ import RemoveIcon from '@mui/icons-material/Remove';
 import MailIcon from '@mui/icons-material/Mail';
 import Switch from '@mui/material/Switch';
 import FormControlLabel from '@mui/material/FormControlLabel';
-
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
 import Badge from '@mui/material/Badge';
+
+import Footer from 'src/components/Footer';
+import PageTitleWrapper from '@/components/PageTitleWrapper';
+import PageTitle from '@/components/PageTitle';
+import SidebarLayout from '@/layouts/SidebarLayout';
 
 const shapeStyles = { bgcolor: 'primary.main', width: 40, height: 40 };
 const shapeCircleStyles = { borderRadius: '50%' };

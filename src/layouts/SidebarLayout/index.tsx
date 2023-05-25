@@ -1,13 +1,14 @@
 import { FC, ReactNode, useEffect } from 'react';
 import { Box, alpha, lighten, useTheme } from '@mui/material';
 import PropTypes from 'prop-types';
-
-import Sidebar from './Sidebar';
-import Header from './Header';
-import useStore from '@/store/store';
 import { useContext } from 'react';
 import TopicIcon from '@mui/icons-material/Topic';
+
+import useStore from '@/store/store';
 import { SidebarContext } from '@/contexts/SidebarContext';
+
+import Header from './Header';
+import Sidebar from './Sidebar';
 
 interface SidebarLayoutProps {
   children?: ReactNode;
@@ -43,19 +44,23 @@ interface iding {
 }
 
 const ids: iding = {
-  mainPage: 0,
-}
+  mainPage: 0
+};
 
-const SidebarLayout: FC<SidebarLayoutProps> = ({ children }: { children: JSX.Element }) => {
+const SidebarLayout: FC<SidebarLayoutProps> = ({
+  children
+}: {
+  children: JSX.Element;
+}) => {
   const theme = useTheme();
   const { setCurrentTopic } = useContext(SidebarContext);
   let layoutType: string = children.type.layout;
   if (!layoutType) {
-    layoutType = "none";
+    layoutType = 'none';
   }
   const id = ids[layoutType];
 
-  const { role, name } = useStore()
+  const { role, name } = useStore();
 
   useEffect(() => {
     // fetch user profile data that needs to be in header
@@ -63,44 +68,44 @@ const SidebarLayout: FC<SidebarLayoutProps> = ({ children }: { children: JSX.Ele
 
   const userInfo: userInfo = {
     signedIn: true,
-    avatar: "", //change this to the user's avatar
+    avatar: '', //change this to the user's avatar
     name: name
-  }
+  };
 
-  const sideBarItems : fields[] = [
+  const sideBarItems: fields[] = [
     {
       route: '/main',
       section: [
-          {
+        {
           title: 'Topics',
           items: [
             {
               avatar: <TopicIcon />,
               name: 'Topic X',
-              callback: () => { 
-                setCurrentTopic('Topic X')
+              callback: () => {
+                setCurrentTopic('Topic X');
               } // fetch data from the correct endpoint and then cache it with a small expiration time
               // this callback only sets the current topic in the context and then data fetching occours in main.tsx
             },
             {
               avatar: <TopicIcon />,
               name: 'Topic Y',
-              callback: () => { 
-                setCurrentTopic('Topic Y')
+              callback: () => {
+                setCurrentTopic('Topic Y');
               }
             },
             {
               avatar: <TopicIcon />,
               name: 'Topic Z',
-              callback: () => { 
-                setCurrentTopic('Topic Z')
+              callback: () => {
+                setCurrentTopic('Topic Z');
               }
             }
           ]
         }
-      ],
+      ]
     }
-  ]
+  ];
 
   return (
     <>
@@ -131,8 +136,8 @@ const SidebarLayout: FC<SidebarLayoutProps> = ({ children }: { children: JSX.Ele
           }
         }}
       >
-        <Header user={userInfo}/>
-        <Sidebar items={sideBarItems[id]}/>
+        <Header user={userInfo} />
+        <Sidebar items={sideBarItems[id]} />
         <Box
           sx={{
             position: 'relative',

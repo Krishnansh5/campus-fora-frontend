@@ -1,17 +1,13 @@
 import Head from 'next/head';
-import SidebarLayout from '@/layouts/SidebarLayout';
 import PropTypes from 'prop-types';
 import { useState } from 'react';
-
-import PageTitle from '@/components/PageTitle';
-import PageTitleWrapper from '@/components/PageTitleWrapper';
 import {
-  Container,
-  Grid,
   Card,
-  CardHeader,
   CardContent,
-  Divider
+  CardHeader,
+  Container,
+  Divider,
+  Grid
 } from '@mui/material';
 import Button from '@mui/material/Button';
 import Avatar from '@mui/material/Avatar';
@@ -25,6 +21,10 @@ import PersonIcon from '@mui/icons-material/Person';
 import AddIcon from '@mui/icons-material/Add';
 import Typography from '@mui/material/Typography';
 import { blue } from '@mui/material/colors';
+
+import PageTitleWrapper from '@/components/PageTitleWrapper';
+import PageTitle from '@/components/PageTitle';
+import SidebarLayout from '@/layouts/SidebarLayout';
 import Footer from 'src/components/Footer';
 
 const emails = ['username@gmail.com', 'user02@gmail.com'];

@@ -1,14 +1,13 @@
 import {
+  Avatar,
   Box,
-  Typography,
   Card,
   CardHeader,
   Divider,
-  Avatar,
-  useTheme,
-  styled
+  Typography,
+  styled,
+  useTheme
 } from '@mui/material';
-
 import ShoppingBagTwoToneIcon from '@mui/icons-material/ShoppingBagTwoTone';
 import FavoriteTwoToneIcon from '@mui/icons-material/FavoriteTwoTone';
 import StarTwoToneIcon from '@mui/icons-material/StarTwoTone';

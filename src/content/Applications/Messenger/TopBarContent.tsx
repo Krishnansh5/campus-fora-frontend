@@ -1,19 +1,19 @@
-import { useState, SyntheticEvent } from 'react';
+import { SyntheticEvent, useState } from 'react';
 import {
-  Box,
-  IconButton,
-  Tooltip,
-  Avatar,
   Accordion,
-  AccordionSummary,
   AccordionDetails,
-  Drawer,
+  AccordionSummary,
+  Avatar,
+  Box,
   Divider,
-  Typography,
+  Drawer,
+  IconButton,
   List,
   ListItem,
-  ListItemText,
   ListItemIcon,
+  ListItemText,
+  Tooltip,
+  Typography,
   styled,
   useTheme
 } from '@mui/material';

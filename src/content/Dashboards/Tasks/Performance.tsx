@@ -1,12 +1,12 @@
 import {
-  Card,
-  Box,
-  CardContent,
-  Typography,
   Avatar,
-  useTheme,
+  Box,
+  Card,
+  CardContent,
   LinearProgress,
-  styled
+  Typography,
+  styled,
+  useTheme
 } from '@mui/material';
 import AssignmentTurnedInTwoToneIcon from '@mui/icons-material/AssignmentTurnedInTwoTone';
 import CancelPresentationTwoToneIcon from '@mui/icons-material/CancelPresentationTwoTone';

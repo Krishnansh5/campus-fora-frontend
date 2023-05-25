@@ -1,21 +1,21 @@
 import Head from 'next/head';
-import SidebarLayout from '@/layouts/SidebarLayout';
-
-import PageTitle from '@/components/PageTitle';
-import PageTitleWrapper from '@/components/PageTitleWrapper';
 import {
-  Container,
-  Grid,
   Card,
-  CardHeader,
   CardContent,
-  Divider
+  CardHeader,
+  Container,
+  Divider,
+  Grid
 } from '@mui/material';
 import Accordion from '@mui/material/Accordion';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import Typography from '@mui/material/Typography';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+
+import PageTitleWrapper from '@/components/PageTitleWrapper';
+import PageTitle from '@/components/PageTitle';
+import SidebarLayout from '@/layouts/SidebarLayout';
 import Footer from 'src/components/Footer';
 
 function Accordions() {

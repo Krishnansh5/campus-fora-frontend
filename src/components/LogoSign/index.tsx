@@ -1,12 +1,13 @@
 import {
+  Badge,
   Box,
   Tooltip,
-  Badge,
   TooltipProps,
-  tooltipClasses,
   styled,
+  tooltipClasses,
   useTheme
 } from '@mui/material';
+
 import Link from 'src/components/Link';
 
 const LogoWrapper = styled(Link)(

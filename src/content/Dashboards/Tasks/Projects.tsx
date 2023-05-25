@@ -1,24 +1,25 @@
 import {
+  Avatar,
+  AvatarGroup,
+  Badge,
+  Box,
   Button,
   CardHeader,
-  Box,
   Grid,
-  Typography,
-  Avatar,
   IconButton,
-  Tooltip,
-  AvatarGroup,
   LinearProgress,
-  Badge,
+  Tooltip,
+  Typography,
   styled,
   useTheme
 } from '@mui/material';
 import MoreVertTwoToneIcon from '@mui/icons-material/MoreVertTwoTone';
-import Link from 'src/components/Link';
-import Text from 'src/components/Text';
 import CalendarTodayTwoToneIcon from '@mui/icons-material/CalendarTodayTwoTone';
 import CheckTwoToneIcon from '@mui/icons-material/CheckTwoTone';
 import StarTwoToneIcon from '@mui/icons-material/StarTwoTone';
+
+import Text from 'src/components/Text';
+import Link from 'src/components/Link';
 
 const AvatarWrapperSuccess = styled(Avatar)(
   ({ theme }) => `

@@ -1,8 +1,7 @@
-import { Box, Avatar, Typography, Card, styled, Divider } from '@mui/material';
-
+import { Avatar, Box, Card, Divider, Typography, styled } from '@mui/material';
 import {
-  formatDistance,
   format,
+  formatDistance,
   subDays,
   subHours,
   subMinutes

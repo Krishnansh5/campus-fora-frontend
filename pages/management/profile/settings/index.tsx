@@ -1,12 +1,12 @@
-import { useState, ChangeEvent } from 'react';
+import { ChangeEvent, useState } from 'react';
 import Head from 'next/head';
+import { Container, Grid, Tab, Tabs } from '@mui/material';
+import { styled } from '@mui/material/styles';
+
 import SidebarLayout from '@/layouts/SidebarLayout';
 import PageHeader from '@/content/Management/Users/settings/PageHeader';
 import PageTitleWrapper from '@/components/PageTitleWrapper';
-import { Container, Tabs, Tab, Grid } from '@mui/material';
 import Footer from '@/components/Footer';
-import { styled } from '@mui/material/styles';
-
 import ActivityTab from '@/content/Management/Users/settings/ActivityTab';
 import EditProfileTab from '@/content/Management/Users/settings/EditProfileTab';
 import NotificationsTab from '@/content/Management/Users/settings/NotificationsTab';

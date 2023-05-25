@@ -1,6 +1,6 @@
 import React from 'react';
-
 import { Theme } from '@mui/material';
+
 import { NebulaFighterTheme } from './schemes/NebulaFighterTheme';
 import { DarkSpacesTheme } from './schemes/DarkSpacesTheme';
 import { GreenFieldsTheme } from './schemes/GreenFieldsTheme';

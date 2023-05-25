@@ -1,13 +1,7 @@
-import React from "react";
-import Head from "next/head";
+import React from 'react';
+import Head from 'next/head';
 
-function Meta({
-  title,
-  description,
-}: {
-  title: string;
-  description: string;
-}) {
+function Meta({ title, description }: { title: string; description: string }) {
   return (
     <div>
       <Head>
@@ -20,8 +14,8 @@ function Meta({
 }
 
 Meta.defaultProps = {
-  title: "Campus Fora",
-  description: "",
+  title: 'Campus Fora',
+  description: ''
 };
 
 export default Meta;

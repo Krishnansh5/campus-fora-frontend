@@ -1,9 +1,8 @@
 import Head from 'next/head';
+import { Container, Grid } from '@mui/material';
+
 import SidebarLayout from '@/layouts/SidebarLayout';
 import Footer from '@/components/Footer';
-
-import { Grid, Container } from '@mui/material';
-
 import ProfileCover from '@/content/Management/Users/details/ProfileCover';
 import RecentActivity from '@/content/Management/Users/details/RecentActivity';
 import Feed from '@/content/Management/Users/details/Feed';

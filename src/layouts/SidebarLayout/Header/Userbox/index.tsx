@@ -1,28 +1,26 @@
 import { useRef, useState } from 'react';
-
 import NextLink from 'next/link';
-
 import {
   Avatar,
   Box,
   Button,
   Divider,
   Hidden,
-  lighten,
   List,
   ListItem,
   ListItemText,
   Popover,
-  Typography
+  Typography,
+  lighten
 } from '@mui/material';
-
 import InboxTwoToneIcon from '@mui/icons-material/InboxTwoTone';
 import { styled } from '@mui/material/styles';
 import ExpandMoreTwoToneIcon from '@mui/icons-material/ExpandMoreTwoTone';
 import AccountBoxTwoToneIcon from '@mui/icons-material/AccountBoxTwoTone';
 import LockOpenTwoToneIcon from '@mui/icons-material/LockOpenTwoTone';
 import AccountTreeTwoToneIcon from '@mui/icons-material/AccountTreeTwoTone';
-import { userInfo } from "@/layouts/SidebarLayout/index"
+
+import { userInfo } from '@/layouts/SidebarLayout/index';
 import useStore from '@/store/store';
 
 const UserBoxButton = styled(Button)(
@@ -61,10 +59,10 @@ const UserBoxDescription = styled(Typography)(
 );
 
 function HeaderUserbox({ userInfo }: { userInfo: userInfo }) {
-  const { role } = useStore()
+  const { role } = useStore();
   const user = {
     name: userInfo.name,
-    avatar: userInfo.avatar,
+    avatar: userInfo.avatar
   };
 
   const ref = useRef<any>(null);
@@ -79,11 +77,8 @@ function HeaderUserbox({ userInfo }: { userInfo: userInfo }) {
   };
 
   if (!userInfo.signedIn) {
-    return (
-      <div>Login</div>
-    )
-  }
-  else {
+    return <div>Login</div>;
+  } else {
     return (
       <>
         <UserBoxButton color="secondary" ref={ref} onClick={handleOpen}>
@@ -92,12 +87,8 @@ function HeaderUserbox({ userInfo }: { userInfo: userInfo }) {
             <UserBoxText>
               <UserBoxLabel variant="body1">{user.name}</UserBoxLabel>
               <UserBoxDescription variant="body2">
-                {
-                  (role == 100) && "Admin"
-                }
-                {
-                  (role == 101) && "Moderator"
-                }
+                {role == 100 && 'Admin'}
+                {role == 101 && 'Moderator'}
               </UserBoxDescription>
             </UserBoxText>
           </Hidden>
@@ -123,12 +114,8 @@ function HeaderUserbox({ userInfo }: { userInfo: userInfo }) {
             <UserBoxText>
               <UserBoxLabel variant="body1">{user.name}</UserBoxLabel>
               <UserBoxDescription variant="body2">
-                {
-                  (role == 100) && "Admin"
-                }
-                {
-                  (role == 101) && "Moderator"
-                }
+                {role == 100 && 'Admin'}
+                {role == 101 && 'Moderator'}
               </UserBoxDescription>
             </UserBoxText>
           </MenuUserBox>

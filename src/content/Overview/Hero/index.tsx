@@ -182,7 +182,8 @@ function Hero() {
                   <b>Built with Typescript</b>
                 </Box>
                 <Typography component="span" variant="subtitle2">
-                  Tokyo Free Black features a modern technology stack and is built with React + Typescript.
+                  Tokyo Free Black features a modern technology stack and is
+                  built with React + Typescript.
                 </Typography>
               </Typography>
             </Grid>

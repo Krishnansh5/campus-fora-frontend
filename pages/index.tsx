@@ -1,21 +1,20 @@
 import { ReactElement, useEffect } from 'react';
-import BaseLayout from 'src/layouts/BaseLayout';
 import { useRouter } from 'next/router';
+
+import BaseLayout from 'src/layouts/BaseLayout';
 
 function Index() {
   const router = useRouter();
-  
+
   useEffect(() => {
     const sendToMainPage = async () => {
       await router.push('/main');
-    }
-    if(router.isReady){
+    };
+    if (router.isReady) {
       sendToMainPage();
     }
   }, []);
-  return (
-    <div />
-  );
+  return <div />;
 }
 
 export default Index;

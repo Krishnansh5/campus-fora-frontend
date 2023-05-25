@@ -1,14 +1,13 @@
 import {
+  Avatar,
   Box,
-  Typography,
+  Button,
   Card,
   CardHeader,
   Divider,
-  Avatar,
   Grid,
-  Button
+  Typography
 } from '@mui/material';
-
 import AddTwoToneIcon from '@mui/icons-material/AddTwoTone';
 
 function Feed() {

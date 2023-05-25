@@ -1,22 +1,21 @@
 import { useContext } from 'react';
-import Scrollbar from 'src/components/Scrollbar';
-import { SidebarContext } from 'src/contexts/SidebarContext';
-
 import {
   Box,
+  Divider,
   Drawer,
   alpha,
-  styled,
-  Divider,
-  useTheme,
+  darken,
   lighten,
-  darken
+  styled,
+  useTheme
 } from '@mui/material';
 
-import SidebarMenu from './SidebarMenu';
+import Scrollbar from 'src/components/Scrollbar';
+import { SidebarContext } from 'src/contexts/SidebarContext';
 import Logo from 'src/components/LogoSign';
-import { fields } from '..';
 
+import SidebarMenu from './SidebarMenu';
+import { fields } from '..';
 
 const SidebarWrapper = styled(Box)(
   ({ theme }) => `
@@ -30,7 +29,7 @@ const SidebarWrapper = styled(Box)(
 `
 );
 
-function Sidebar({items}: {items: fields}) {
+function Sidebar({ items }: { items: fields }) {
   const { sidebarToggle, toggleSidebar } = useContext(SidebarContext);
   const closeSidebar = () => toggleSidebar();
   const theme = useTheme();
@@ -72,7 +71,7 @@ function Sidebar({items}: {items: fields}) {
               background: theme.colors.alpha.trueWhite[1]
             }}
           />
-          <SidebarMenu items={items}/>
+          <SidebarMenu items={items} />
         </Scrollbar>
         <Divider
           sx={{
@@ -116,7 +115,7 @@ function Sidebar({items}: {items: fields}) {
                 background: theme.colors.alpha.trueWhite[10]
               }}
             />
-            <SidebarMenu items={items}/>
+            <SidebarMenu items={items} />
           </Scrollbar>
         </SidebarWrapper>
       </Drawer>

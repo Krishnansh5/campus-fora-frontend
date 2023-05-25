@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
-import create from "zustand";
-import { persist } from "zustand/middleware";
+import create from 'zustand';
+import { persist } from 'zustand/middleware';
 
 interface StateType {
   role: number;
@@ -18,15 +18,15 @@ const useStore = create<StateType>()(
     (set, get) => ({
       role: 0 || get()?.role,
       setRole: (role: number) => set({ role }),
-      userID: "" || get()?.userID,
+      userID: '' || get()?.userID,
       setUserID: (userID: string) => set({ userID }),
-      token: "" || get()?.token,
+      token: '' || get()?.token,
       setToken: (token: string) => set({ token }),
-      name: "" || get()?.name,
-      setName: (name: string) => set({ name }),
+      name: '' || get()?.name,
+      setName: (name: string) => set({ name })
     }),
     {
-      name: "store",
+      name: 'store'
     }
   )
 );

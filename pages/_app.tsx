@@ -1,18 +1,19 @@
 import type { ReactElement, ReactNode } from 'react';
-
 import type { NextPage } from 'next';
 import type { AppProps } from 'next/app';
 import Head from 'next/head';
 import Router from 'next/router';
 import nProgress from 'nprogress';
+
 import 'nprogress/nprogress.css';
-import ThemeProvider from 'src/theme/ThemeProvider';
 import CssBaseline from '@mui/material/CssBaseline';
 import { CacheProvider, EmotionCache } from '@emotion/react';
-import createEmotionCache from 'src/createEmotionCache';
-import { SidebarProvider } from 'src/contexts/SidebarContext';
 import AdapterDateFns from '@mui/lab/AdapterDateFns';
 import LocalizationProvider from '@mui/lab/LocalizationProvider';
+
+import createEmotionCache from 'src/createEmotionCache';
+import { SidebarProvider } from 'src/contexts/SidebarContext';
+import ThemeProvider from 'src/theme/ThemeProvider';
 
 const clientSideEmotionCache = createEmotionCache();
 

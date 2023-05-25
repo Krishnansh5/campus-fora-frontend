@@ -1,12 +1,12 @@
 import {
   Box,
   CardHeader,
-  Typography,
-  IconButton,
-  FormControlLabel,
   Checkbox,
+  FormControlLabel,
   FormGroup,
+  IconButton,
   Tooltip,
+  Typography,
   styled
 } from '@mui/material';
 import Timeline from '@mui/lab/Timeline';

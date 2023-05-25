@@ -1,4 +1,4 @@
-import { useState, ReactNode, createContext } from 'react';
+import { ReactNode, createContext, useState } from 'react';
 type SidebarContext = {
   sidebarToggle: any;
   currentTopic: string;
@@ -29,7 +29,13 @@ export function SidebarProvider({ children }: Props) {
 
   return (
     <SidebarContext.Provider
-      value={{ sidebarToggle, currentTopic, toggleSidebar, closeSidebar, setCurrentTopic }}
+      value={{
+        sidebarToggle,
+        currentTopic,
+        toggleSidebar,
+        closeSidebar,
+        setCurrentTopic
+      }}
     >
       {children}
     </SidebarContext.Provider>

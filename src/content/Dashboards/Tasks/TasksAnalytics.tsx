@@ -1,17 +1,18 @@
 import { useRef, useState } from 'react';
 import {
-  Button,
   Box,
+  Button,
   Menu,
-  alpha,
   MenuItem,
   Typography,
+  alpha,
   styled,
   useTheme
 } from '@mui/material';
 import ExpandMoreTwoToneIcon from '@mui/icons-material/ExpandMoreTwoTone';
-import { Chart } from 'src/components/Chart';
 import type { ApexOptions } from 'apexcharts';
+
+import { Chart } from 'src/components/Chart';
 
 const DotPrimaryLight = styled('span')(
   ({ theme }) => `

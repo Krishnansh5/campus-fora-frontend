@@ -1,5 +1,4 @@
 import {
-  alpha,
   Badge,
   Box,
   Divider,
@@ -8,12 +7,12 @@ import {
   ListItem,
   Popover,
   Tooltip,
-  Typography
+  Typography,
+  alpha
 } from '@mui/material';
 import { useRef, useState } from 'react';
 import NotificationsActiveTwoToneIcon from '@mui/icons-material/NotificationsActiveTwoTone';
 import { styled } from '@mui/material/styles';
-
 import { formatDistance, subDays } from 'date-fns';
 
 const NotificationsBadge = styled(Badge)(

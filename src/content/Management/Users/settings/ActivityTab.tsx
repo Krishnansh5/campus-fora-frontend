@@ -1,22 +1,22 @@
 import {
-  Box,
-  CardMedia,
-  Typography,
-  Card,
-  CardHeader,
-  Divider,
   Avatar,
-  IconButton,
+  Box,
   Button,
+  Card,
   CardActions,
-  Link
+  CardHeader,
+  CardMedia,
+  Divider,
+  IconButton,
+  Link,
+  Typography
 } from '@mui/material';
 import { styled } from '@mui/material/styles';
-
 import MoreHorizTwoToneIcon from '@mui/icons-material/MoreHorizTwoTone';
 import ThumbUpAltTwoToneIcon from '@mui/icons-material/ThumbUpAltTwoTone';
 import CommentTwoToneIcon from '@mui/icons-material/CommentTwoTone';
 import ShareTwoToneIcon from '@mui/icons-material/ShareTwoTone';
+
 import Text from '@/components/Text';
 
 const CardActionsWrapper = styled(CardActions)(

@@ -1,15 +1,16 @@
 import {
-  Box,
-  Grid,
-  Typography,
   Avatar,
   Badge,
-  Tooltip,
-  useTheme,
+  Box,
+  Grid,
   LinearProgress,
-  styled
+  Tooltip,
+  Typography,
+  styled,
+  useTheme
 } from '@mui/material';
-import { formatDistance, subDays, subMinutes, subHours } from 'date-fns';
+import { formatDistance, subDays, subHours, subMinutes } from 'date-fns';
+
 import Text from 'src/components/Text';
 
 const DotLegend = styled('span')(

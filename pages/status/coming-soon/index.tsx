@@ -1,28 +1,27 @@
 import { useEffect, useState } from 'react';
 import {
   Box,
-  Typography,
+  Button,
   Container,
   Divider,
-  OutlinedInput,
-  IconButton,
-  Tooltip,
   FormControl,
+  FormHelperText,
+  IconButton,
   InputAdornment,
-  Button,
-  styled,
-  FormHelperText
+  OutlinedInput,
+  Tooltip,
+  Typography,
+  styled
 } from '@mui/material';
 import type { ReactElement } from 'react';
-import BaseLayout from '@/layouts/BaseLayout';
-
 import Head from 'next/head';
-import Logo from '@/components/LogoSign';
-
 import FacebookIcon from '@mui/icons-material/Facebook';
 import TwitterIcon from '@mui/icons-material/Twitter';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import MailTwoToneIcon from '@mui/icons-material/MailTwoTone';
+
+import Logo from '@/components/LogoSign';
+import BaseLayout from '@/layouts/BaseLayout';
 
 const MainContent = styled(Box)(
   () => `
@@ -70,7 +69,7 @@ const ButtonNotify = styled(Button)(
 
 function StatusComingSoon() {
   const calculateTimeLeft = () => {
-    const difference = +new Date(`2023`) - +new Date();
+    const difference = +new Date('2023') - +new Date();
     let timeLeft = {};
 
     if (difference > 0) {

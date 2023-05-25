@@ -1,20 +1,20 @@
 import { useContext } from 'react';
 import { useRouter } from 'next/router';
-
 import {
+  Box,
+  Button,
+  List,
+  ListItem,
   ListSubheader,
   alpha,
-  Box,
-  List,
-  styled,
-  Button,
-  ListItem
+  styled
 } from '@mui/material';
 import NextLink from 'next/link';
-import { SidebarContext } from 'src/contexts/SidebarContext';
-
 import BrightnessLowTwoToneIcon from '@mui/icons-material/BrightnessLowTwoTone';
 import MmsTwoToneIcon from '@mui/icons-material/MmsTwoTone';
+
+import { SidebarContext } from 'src/contexts/SidebarContext';
+
 import { fields } from '../..';
 
 const MenuWrapper = styled(Box)(
@@ -167,44 +167,40 @@ function SidebarMenu({ items }: { items: fields }) {
   return (
     <>
       <MenuWrapper>
-        {
-          items.section.map((section, index) => {
-            return (
-              <List
-                component="div"
-                subheader={
-                  <ListSubheader component="div" disableSticky>
-                    {section.title}
-                  </ListSubheader>
-                }
-              >
-                <SubMenuWrapper>
-                  <List component="div">
-                    {
-                      section.items.map((item) => {
-                        return (
-                          <ListItem component="div">
-                            <Button
-                              disableRipple
-                              component="a"
-                              onClick={() => {
-                                item.callback()
-                                closeSidebar()
-                              }}
-                              startIcon={item.avatar}
-                            >
-                              {item.name}
-                            </Button>
-                          </ListItem>
-                        )
-                      })
-                    }
-                  </List>
-                </SubMenuWrapper>
-              </List>
-            )
-          })
-        }
+        {items.section.map((section, index) => {
+          return (
+            <List
+              component="div"
+              subheader={
+                <ListSubheader component="div" disableSticky>
+                  {section.title}
+                </ListSubheader>
+              }
+            >
+              <SubMenuWrapper>
+                <List component="div">
+                  {section.items.map((item) => {
+                    return (
+                      <ListItem component="div">
+                        <Button
+                          disableRipple
+                          component="a"
+                          onClick={() => {
+                            item.callback();
+                            closeSidebar();
+                          }}
+                          startIcon={item.avatar}
+                        >
+                          {item.name}
+                        </Button>
+                      </ListItem>
+                    );
+                  })}
+                </List>
+              </SubMenuWrapper>
+            </List>
+          );
+        })}
       </MenuWrapper>
     </>
   );

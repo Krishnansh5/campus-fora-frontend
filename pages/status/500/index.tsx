@@ -1,19 +1,19 @@
 import { useState } from 'react';
 import {
   Box,
-  Typography,
-  Hidden,
-  Container,
   Button,
+  Container,
   Grid,
+  Hidden,
+  Typography,
   styled
 } from '@mui/material';
 import type { ReactElement } from 'react';
-import BaseLayout from 'src/layouts/BaseLayout';
-
 import Head from 'next/head';
 import RefreshTwoToneIcon from '@mui/icons-material/RefreshTwoTone';
 import LoadingButton from '@mui/lab/LoadingButton';
+
+import BaseLayout from 'src/layouts/BaseLayout';
 
 const GridWrapper = styled(Grid)(
   ({ theme }) => `

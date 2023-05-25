@@ -1,21 +1,20 @@
 import {
   Box,
-  Typography,
   Container,
   Divider,
   IconButton,
   Tooltip,
+  Typography,
   styled
 } from '@mui/material';
 import type { ReactElement } from 'react';
-import BaseLayout from '@/layouts/BaseLayout';
-
 import Head from 'next/head';
-import Logo from '@/components/LogoSign';
-
 import FacebookIcon from '@mui/icons-material/Facebook';
 import TwitterIcon from '@mui/icons-material/Twitter';
 import InstagramIcon from '@mui/icons-material/Instagram';
+
+import Logo from '@/components/LogoSign';
+import BaseLayout from '@/layouts/BaseLayout';
 
 const MainContent = styled(Box)(
   () => `

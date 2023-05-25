@@ -1,14 +1,14 @@
-import { useState, ChangeEvent } from 'react';
+import { ChangeEvent, useState } from 'react';
 import {
   Box,
-  Typography,
   Card,
-  Grid,
-  ListItem,
-  List,
-  ListItemText,
   Divider,
-  Switch
+  Grid,
+  List,
+  ListItem,
+  ListItemText,
+  Switch,
+  Typography
 } from '@mui/material';
 
 function NotificationsTab() {
