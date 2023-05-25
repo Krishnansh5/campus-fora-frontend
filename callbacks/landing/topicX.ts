@@ -1,4 +1,4 @@
-import axios, { AxiosResponse } from 'axios';
+import axios from 'axios';
 
 import { SERVER_ERROR, TOPIC_X_URL, responseBody } from '@callbacks/constants';
 import { QuestionDetails } from '@callbacks/types';

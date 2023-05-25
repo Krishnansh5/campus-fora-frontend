@@ -6,6 +6,7 @@
       "@/public/*": ["./public/*"],
       "@/store/*": ["./store/*"],
       "@callbacks/*": ["callbacks/*"],
+      "@components/*": ["components/*"],
     },
     "allowJs": true,
     "allowSyntheticDefaultImports": true,

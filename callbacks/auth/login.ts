@@ -20,7 +20,7 @@ const loginRequest = {
     authInstance
       .post<
         LoginResponse,
-    AxiosResponse<LoginResponse, LoginParams>,
+        AxiosResponse<LoginResponse, LoginParams>,
         LoginParams
       >('/login', body)
       .then(responseBody)
