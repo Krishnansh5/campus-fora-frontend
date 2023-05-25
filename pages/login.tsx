@@ -43,7 +43,6 @@ function Login() {
   });
 
   const { setToken, setRole, setName, setUserID } = useStore();
-  const { setToken, setRole, setName, setUserID } = useStore();
 
   useEffect(() => {
     setToken('');
