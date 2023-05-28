@@ -9,3 +9,10 @@ export interface LoginResponse {
   role_id: number;
   user_id: string;
 }
+
+export interface SignupParams {
+  user_id: string;
+  password: string;
+  confirm_password: string;
+  remember_me: boolean;
+}
