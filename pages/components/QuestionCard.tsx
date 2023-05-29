@@ -92,8 +92,8 @@ const QuestionCard = ({
                     display: 'flex',
                     flexDirection: 'column',
                 }}>
-                    <h2 className="question">{question} Lorem ipsum dolor sit amet my hehe ehehe eheheh eheheh eheh .</h2>
-                    <p className="answer">{answer} Lorem ipsum dolor sit amet consectetur adipisicing elit. Modi minima velit, nobis accusantium non ipsum quam nisi corporis cumque, sed voluptates ipsam delectus quidem? Quia reprehenderit dolore vel adipisci distinctio?</p>
+                    <h2 className="question">{question}</h2>
+                    <p className="answer">{answer}</p>
                 </Box>
                 <Box className="stats" sx={{
                     textAlign: 'center',
@@ -106,7 +106,7 @@ const QuestionCard = ({
                         <p className="author-name">{author}</p>
                     </span>
                     <span className="time-posted">{timePosted} hours ago</span>
-                    <span className="comments"><ChatBubbleOutlineOutlinedIcon />{comments}</span>
+                    <span className="comments"><ChatBubbleOutlineOutlinedIcon />{comments}</span>  
                 </Box>
             </Box>
         </Box>
