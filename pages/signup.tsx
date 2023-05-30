@@ -124,15 +124,27 @@ function SignUp() {
               sx={{ minHeight: '40vh' }}
             >
               <FormControl sx={{ m: 1, width: '35ch' }} variant="outlined">
-                <InputLabel htmlFor="Email ID" error={!!errors.user_id}>
+                <InputLabel htmlFor="user_id" error={!!errors.user_id}>
+                  User ID
+                </InputLabel>
+                <OutlinedInput
+                  id="Username"
+                  label="Username"
+                  error={!!errors.user_id}
+                  // helperText={errors.user_id ? "Incorrect Email ID" : ""}
+                  {...register('user_id', {required: true,})}
+                  defaultValue=""
+                />
+              </FormControl>
+              <FormControl sx={{ m: 1, width: '35ch' }} variant="outlined">
+                <InputLabel htmlFor="Email ID" error={!!errors.email_id}>
                   Email ID
                 </InputLabel>
                 <OutlinedInput
                   id="Email ID"
                   label="Email ID"
-                  error={!!errors.user_id}
-                  // helperText={errors.user_id ? "Incorrect Email ID" : ""}
-                  {...register('user_id', {
+                  error={!!errors.email_id}
+                  {...register('email_id', {
                     required: true,
                     pattern: /^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$/,
                     setValueAs: (value) => value.trim()

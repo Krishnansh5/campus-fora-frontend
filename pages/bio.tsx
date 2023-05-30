@@ -3,6 +3,17 @@ import isHotkey from "is-hotkey";
 import { Editable, withReact, useSlate, Slate } from "slate-react";
 import { Editor, Transforms, createEditor } from "slate";
 import { withHistory } from "slate-history";
+import {
+  Card,
+  Stack,
+  CardHeader,
+  Typography,
+  FormControl,
+  Grid,
+  Box
+} from '@mui/material';
+import { LoadingButton } from '@mui/lab';
+import Meta from '@/components/Meta';
 
 import { Button, Icon, Toolbar } from "./components";
 
@@ -22,35 +33,81 @@ const RichTextExample = () => {
   const editor = useMemo(() => withHistory(withReact(createEditor())), []);
 
   return (
-    <Slate editor={editor} value={value} onChange={value => setValue(value)}>
-      <Toolbar>
-        <MarkButton format="bold" icon="format_bold" />
-        <MarkButton format="italic" icon="format_italic" />
-        <MarkButton format="underline" icon="format_underlined" />
-        <MarkButton format="code" icon="code" />
-        <BlockButton format="heading-one" icon="looks_one" />
-        <BlockButton format="heading-two" icon="looks_two" />
-        <BlockButton format="block-quote" icon="format_quote" />
-        <BlockButton format="numbered-list" icon="format_list_numbered" />
-        <BlockButton format="bulleted-list" icon="format_list_bulleted" />
-      </Toolbar>
-      <Editable
-        renderElement={renderElement}
-        renderLeaf={renderLeaf}
-        placeholder="Enter some rich text…"
-        spellCheck
-        autoFocus
-        onKeyDown={event => {
-          for (const hotkey in HOTKEYS) {
-            if (isHotkey(hotkey, event)) {
-              event.preventDefault();
-              const mark = HOTKEYS[hotkey];
-              toggleMark(editor, mark);
-            }
-          }
+    <Stack
+        alignItems="center"
+        justifyContent="center"
+        sx={{ minHeight: '100vh' }}
+    >
+      <Meta />
+      <Card
+        elevation={2}
+        sx={{
+          padding: 3,
+          borderRadius: '10px',
+          maxHeight: '80vh',
+          width: { xs: '330px', sm: '600px', margin: '10px auto' }
         }}
-      />
-    </Slate>
+      >
+        <CardHeader
+            title={
+              <Typography variant="h2" component="div">
+                Bio 
+              </Typography>
+            }
+          />
+        <Slate editor={editor} value={value} onChange={value => setValue(value)}>
+          <Toolbar>
+            <MarkButton format="bold" icon="Bold"/>
+            <MarkButton format="italic" icon=" Italic " />
+            <MarkButton format="underline" icon=" Underlined " />
+            <MarkButton format="code" icon="Code" />
+            {/* <BlockButton format="heading-one" icon="looks_one" />
+            <BlockButton format="heading-two" icon="looks_two" /> */}
+            <BlockButton format="block-quote" icon=" Quote " />
+            {/* <BlockButton format="numbered-list" icon="Numbered List" /> */}
+            <BlockButton format="bulleted-list" icon=" Bulleted List " />
+          </Toolbar>
+          <Box sx={{ ml: '1px', p:'10px' }}>
+              <Editable
+                renderElement={renderElement}
+                renderLeaf={renderLeaf}
+                placeholder="Enter your bio here…"
+                spellCheck
+                autoFocus
+                onKeyDown={event => {
+                  for (const hotkey in HOTKEYS) {
+                    if (isHotkey(hotkey, event)) {
+                      event.preventDefault();
+                      const mark = HOTKEYS[hotkey];
+                      toggleMark(editor, mark);
+                    }
+                  }
+                }}
+              />
+          </Box>
+        </Slate>
+        <Box sx={{  p:'100px' }}>
+            <FormControl sx={{ m: 1, width: '35ch' }} variant="outlined" >
+                    <LoadingButton
+                      // loading={loading}
+                      variant="contained"
+                      // onClick={handleSubmit(onSignup)}
+                    >
+                      Proceed
+                    </LoadingButton>
+            </FormControl>
+            <FormControl sx={{ m: 1, width: '35ch' }} variant="outlined">
+                    <LoadingButton
+                      // loading={loading}
+                      variant="contained"
+                      // onClick={handleSubmit(onSignup)}
+                    >
+                      Skip
+                    </LoadingButton>
+            </FormControl>
+        </Box>
+      </Card>
+    </Stack>
   );
 };
 
@@ -169,36 +226,8 @@ const initialValue = [
   {
     type: "paragraph",
     children: [
-      { text: "This is editable " },
-      { text: "rich", bold: true },
-      { text: " text, " },
-      { text: "much", italic: true },
-      { text: " better than a " },
-      { text: "<textarea>", code: true },
-      { text: "!" }
+      {text: ''}
     ]
-  },
-  {
-    type: "paragraph",
-    children: [
-      {
-        text:
-          "Since it's rich text, you can do things like turn a selection of text "
-      },
-      { text: "bold", bold: true },
-      {
-        text:
-          ", or add a semantically rendered block quote in the middle of the page, like this:"
-      }
-    ]
-  },
-  {
-    type: "block-quote",
-    children: [{ text: "A wise quote." }]
-  },
-  {
-    type: "paragraph",
-    children: [{ text: "Try it out for yourself!" }]
   }
 ];
 

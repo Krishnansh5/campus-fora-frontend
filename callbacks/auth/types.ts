@@ -12,7 +12,9 @@ export interface LoginResponse {
 
 export interface SignupParams {
   user_id: string;
+  email_id: string;
   password: string;
   confirm_password: string;
+  bio: string;
   remember_me: boolean;
 }
