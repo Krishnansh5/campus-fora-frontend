@@ -1,4 +1,11 @@
-const withImages = require('next-images');
+/* eslint-disable @typescript-eslint/no-var-requires */
+import withImages from 'next-images';
+import withPWA from 'next-pwa';
+// const withPWA = require('next-pwa')({
+//   dest: 'public',
+//   register: false,
+//   disable: process.env.NODE_ENV === 'development'
+// });
 
 const redirects = {
   async redirects() {
@@ -12,4 +19,13 @@ const redirects = {
   }
 };
 
-module.exports = withImages(redirects);
+export default withImages(
+  withPWA({
+    pwa: {
+      dest: 'public',
+      register: false,
+      disable: process.env.NODE_ENV === 'development'
+    },
+    redirects: redirects
+  })
+);

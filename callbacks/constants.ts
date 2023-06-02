@@ -21,5 +21,11 @@ export interface StatusResponse {
   status: string;
 }
 
+export const setConfig = (token: string) => ({
+  headers: {
+    Authorization: `Bearer ${token}`
+  }
+});
+
 export const responseBody = <T>(response: AxiosResponse<T>) => response.data;
 export type ErrorType = AxiosError<ErrorResponse>;

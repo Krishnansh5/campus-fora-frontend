@@ -69,7 +69,6 @@ function Post() {
             sx={{
               mr: 1,
                         }} />
-          />
           {formatDistance(subDays(new Date(), 24), new Date(), {
             addSuffix: true,
                     })}

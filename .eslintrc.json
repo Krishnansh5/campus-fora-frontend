@@ -40,7 +40,7 @@
       }
     ],
     "no-unused-vars": [2, { "vars": "all", "args": "after-used" }],
-    "react/jsx-filename-extension": [1, { "extensions": [".ts", ".tsx"] }],
+    "react/jsx-filename-extension": [1, { "extensions": [".ts", ".tsx", ".js"] }],
     "import/extensions": "off",
     "react/prop-types": "off",
     "jsx-a11y/anchor-is-valid": "off",
