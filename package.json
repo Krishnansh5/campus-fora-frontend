@@ -1,5 +1,6 @@
 {
   "name": "tokyo-free-black-nextjs-admin-dashboard",
+  "type": "module",
   "version": "1.0.0",
   "title": "Tokyo Free Black NextJS Typescript Admin Dashboard",
   "description": "High performance React template built with lots of powerful MUI (Material-UI) components across multiple product niches for fast & perfect apps development processes",
@@ -21,6 +22,7 @@
     "@mui/material": "^5.13.2",
     "@mui/styles": "^5.8.0",
     "@types/node": "17.0.39",
+
     "@types/nprogress": "0.2.0",
     "@types/numeral": "2.0.2",
     "@types/react": "17.0.40",
@@ -35,17 +37,19 @@
     "date-fns": "2.28.0",
     "eslint-plugin-jsx-a11y": "^6.7.1",
     "eslint-plugin-react-hooks": "^4.6.0",
+    "firebase": "^9.22.1",
+    "next": "12.1.6",
     "immutable": "^4.3.0",
     "material-ui": "^1.0.0-beta.47",
     "mui-one-time-password-input": "^1.1.0",
-    "next": "^13.4.3",
     "next-images": "1.8.4",
+    "next-pwa": "^5.6.0",
     "nprogress": "0.2.0",
     "numeral": "2.0.6",
-    "react": "^18.2.0",
+    "react": "17.0.2",
     "react-apexcharts": "1.4.0",
     "react-custom-scrollbars-2": "4.4.0",
-    "react-dom": "^18.2.0",
+    "react-dom": "17.0.2",
     "react-hook-form": "^7.43.9",
     "react-markdown": "^8.0.7",
     "react-pin-input-hook": "^1.0.9",
@@ -57,6 +61,10 @@
     "typescript": "4.7.3",
     "zustand": "^4.3.8"
   },
+  "resolutions": {
+    "@types/react": "17.0.40",
+    "@types/react-dom": "17.0.13"
+  },
   "scripts": {
     "dev": "next",
     "build": "next build",
@@ -64,7 +72,7 @@
     "export": "next export",
     "lint": "next lint",
     "lint-fix": "next lint --fix --ext .ts,.tsx",
-    "format": "prettier --write \"./**/*.{ts,tsx,js,jsx,json}\" --config ./.prettierrc"
+    "format": "prettier --write \"./*/.{ts,tsx,js,jsx,json}\" --config ./.prettierrc"
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^5.59.6",
@@ -76,7 +84,7 @@
     "eslint-plugin-import": "^2.27.5",
     "eslint-plugin-prettier": "4.0.0",
     "eslint-plugin-react": "^7.32.2",
-    "next-transpile-modules": "9.0.0",
+    "next-transpile-modules": "^10.0.0",
     "prettier": "2.6.2"
   }
 }

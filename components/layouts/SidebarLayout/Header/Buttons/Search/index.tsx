@@ -8,7 +8,6 @@ import {
   DialogContent,
   DialogTitle,
   Divider,
-  Hidden,
   IconButton,
   InputAdornment,
   Link,
@@ -150,18 +149,17 @@ function HeaderSearch() {
             <Divider sx={{ my: 1 }} />
             <List disablePadding>
               <ListItem button>
-                <Hidden smDown>
-                  <ListItemAvatar>
-                    <Avatar
-                      sx={{
-                        background: (theme: Theme) =>
-                          theme.palette.secondary.main
-                      }}
-                    >
-                      <FindInPageTwoToneIcon />
-                    </Avatar>
-                  </ListItemAvatar>
-                </Hidden>
+                {/* <Hidden smDown> */}
+                <ListItemAvatar sx={{ display: { xs: 'none', sm: 'block' } }}>
+                  <Avatar
+                    sx={{
+                      background: (theme: Theme) => theme.palette.secondary.main
+                    }}
+                  >
+                    <FindInPageTwoToneIcon />
+                  </Avatar>
+                </ListItemAvatar>
+                {/* </Hidden> */}
                 <Box flex="1">
                   <Box display="flex" justifyContent="space-between">
                     <Link
@@ -189,18 +187,17 @@ function HeaderSearch() {
               </ListItem>
               <Divider sx={{ my: 1 }} component="li" />
               <ListItem button>
-                <Hidden smDown>
-                  <ListItemAvatar>
-                    <Avatar
-                      sx={{
-                        background: (theme: Theme) =>
-                          theme.palette.secondary.main
-                      }}
-                    >
-                      <FindInPageTwoToneIcon />
-                    </Avatar>
-                  </ListItemAvatar>
-                </Hidden>
+                {/* <Hidden smDown> */}
+                <ListItemAvatar sx={{ display: { xs: 'none', sm: 'block' } }}>
+                  <Avatar
+                    sx={{
+                      background: (theme: Theme) => theme.palette.secondary.main
+                    }}
+                  >
+                    <FindInPageTwoToneIcon />
+                  </Avatar>
+                </ListItemAvatar>
+                {/* </Hidden> */}
                 <Box flex="1">
                   <Box display="flex" justifyContent="space-between">
                     <Link
@@ -227,18 +224,17 @@ function HeaderSearch() {
               </ListItem>
               <Divider sx={{ my: 1 }} component="li" />
               <ListItem button>
-                <Hidden smDown>
-                  <ListItemAvatar>
-                    <Avatar
-                      sx={{
-                        background: (theme: Theme) =>
-                          theme.palette.secondary.main
-                      }}
-                    >
-                      <FindInPageTwoToneIcon />
-                    </Avatar>
-                  </ListItemAvatar>
-                </Hidden>
+                {/* <Hidden smDown> */}
+                <ListItemAvatar sx={{ display: { xs: 'none', sm: 'block' } }}>
+                  <Avatar
+                    sx={{
+                      background: (theme: Theme) => theme.palette.secondary.main
+                    }}
+                  >
+                    <FindInPageTwoToneIcon />
+                  </Avatar>
+                </ListItemAvatar>
+                {/* </Hidden> */}
                 <Box flex="1">
                   <Box display="flex" justifyContent="space-between">
                     <Link
