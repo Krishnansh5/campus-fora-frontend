@@ -1,9 +1,6 @@
 import React, { useState } from 'react';
-import Box from '@mui/material/Box';
-import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward';
-import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
-import ChatBubbleOutlineOutlinedIcon from '@mui/icons-material/ChatBubbleOutlineOutlined';
-import IconButton from '@mui/material/IconButton';
+import { Box, IconButton, Card, useTheme } from '@mui/material';
+import { ArrowUpward as ArrowUpwardIcon, ArrowDownward as ArrowDownwardIcon, ChatBubbleOutlineOutlined as ChatBubbleOutlineOutlinedIcon} from '@mui/icons-material';
 
 interface QuestionCardProps {
     question: string;
@@ -14,7 +11,7 @@ interface QuestionCardProps {
     authorImage: string;
     timePosted: number;
 }
-
+//note: timePosted should be unix epoch time - calcTime turns this into relative time
 const QuestionCard = ({
     question,
     answer,
@@ -24,6 +21,9 @@ const QuestionCard = ({
     authorImage,
     timePosted,
 }: QuestionCardProps) => {
+
+	const theme = useTheme();
+
     const [currentUpvotes, setCurrentUpvotes] = useState(upvotes);
     const [activeButton, setActiveButton] = useState('');
 
@@ -54,10 +54,11 @@ const QuestionCard = ({
     };
 
     return (
-        <Box className="question-card" sx={{
-            width: 750,
+        <Card className="question-card" variant="outlined" sx={{
+            width: "90%",
+            minWidth: "400px",
             p: 1.5,
-            backgroundColor: 'white',
+            backgroundColor: `${theme.colors.primary.lighter}`,
             textAlign: 'center',
             display: 'flex',
             flexDirection: 'row',
@@ -109,7 +110,7 @@ const QuestionCard = ({
                     <span className="comments"><ChatBubbleOutlineOutlinedIcon />{comments}</span>  
                 </Box>
             </Box>
-        </Box>
+        </Card>
     );
 };
 
