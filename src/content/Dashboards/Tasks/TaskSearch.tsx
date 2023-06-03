@@ -25,9 +25,6 @@ import { formatDistance, subDays, subMonths } from 'date-fns';
 import TodayTwoToneIcon from '@mui/icons-material/TodayTwoTone';
 import SearchTwoToneIcon from '@mui/icons-material/SearchTwoTone';
 import ExpandMoreTwoToneIcon from '@mui/icons-material/ExpandMoreTwoTone';
-import { pl } from 'date-fns/locale';
-import FavoriteIcon from '@mui/icons-material/Favorite';
-import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined';
 
 import Text from 'src/components/Text';
 import Link from 'src/components/Link';
@@ -46,10 +43,6 @@ function TaskSearch() {
   const handleDelete = () => {};
 
   const handleClick = () => {};
-  const [liked, setLiked] = useState<boolean>(false);
-  const handleLikeClick = () => {
-    setLiked(!liked);
-  };
   const periods = [
     {
       value: 'popular',

@@ -162,7 +162,7 @@ function SidebarMenu({ items }: { items: Fields }) {
   return (
     <>
       <MenuWrapper>
-        {items.section.map((section) => {
+        {items?.section.map((section) => {
           return (
             <List
               component="div"
