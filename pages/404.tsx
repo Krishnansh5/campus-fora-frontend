@@ -14,6 +14,7 @@ import {
 import Head from 'next/head';
 import SearchTwoToneIcon from '@mui/icons-material/SearchTwoTone';
 import type { ReactElement } from 'react';
+import Image from 'next/image';
 
 import BaseLayout from 'src/layouts/BaseLayout';
 
@@ -59,7 +60,12 @@ function Status404() {
         <TopWrapper>
           <Container maxWidth="md">
             <Box textAlign="center">
-              <img alt="404" height={180} src="/static/images/status/404.svg" />
+              <Image
+                src="/static/images/status/404.svg"
+                height={180}
+                width={360}
+                alt="404"
+              />
               <Typography variant="h2" sx={{ my: 2 }}>
                 The page you were looking for doesn't exist.
               </Typography>
