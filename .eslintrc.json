@@ -49,6 +49,7 @@
     "prettier/prettier": "error",
     "react/no-unescaped-entities": "off",
     "import/no-cycle": [0, { "ignoreExternal": true }],
+    "import/no-extraneous-dependencies": "off",
     "prefer-const": "off",
     "camelcase": "off",
     "@typescript-eslint/comma-dangle": ["error", "never"],

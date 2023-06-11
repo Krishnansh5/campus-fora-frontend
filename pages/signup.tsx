@@ -22,7 +22,7 @@ import { LoadingButton } from '@mui/lab';
 import { useRouter } from 'next/router';
 
 import useStore from '@/store/store';
-import {SignupParams } from '@callbacks/auth/types';
+import { SignupParams } from '@callbacks/auth/types';
 import Meta from '@/components/Meta';
 import loginRequest from '@callbacks/auth/login';
 
@@ -71,11 +71,17 @@ function SignUp() {
   };
 
   const handleClickShowPassword = () => {
-    setPasswordValues({ ...passwordValues, showPassword: !passwordValues.showPassword });
+    setPasswordValues({
+      ...passwordValues,
+      showPassword: !passwordValues.showPassword
+    });
   };
 
   const handleClickShowConfirmPassword = () => {
-    setConfirmPasswordValues({ ...confirmPasswordValues, showPassword: !confirmPasswordValues.showPassword });
+    setConfirmPasswordValues({
+      ...confirmPasswordValues,
+      showPassword: !confirmPasswordValues.showPassword
+    });
   };
 
   const handleMouseDownPassword = (
@@ -132,7 +138,7 @@ function SignUp() {
                   label="Username"
                   error={!!errors.user_id}
                   // helperText={errors.user_id ? "Incorrect Email ID" : ""}
-                  {...register('user_id', {required: true,})}
+                  {...register('user_id', { required: true })}
                   defaultValue=""
                 />
               </FormControl>
@@ -181,13 +187,18 @@ function SignUp() {
                 />
               </FormControl>
               <FormControl sx={{ m: 1, width: '35ch' }} variant="outlined">
-                <InputLabel htmlFor="password" error={!!errors.confirm_password}>
+                <InputLabel
+                  htmlFor="password"
+                  error={!!errors.confirm_password}
+                >
                   Confirm Password
                 </InputLabel>
                 <OutlinedInput
                   id="password"
                   error={!!errors.confirm_password}
-                  type={confirmPasswordValues.showPassword ? 'text' : 'password'}
+                  type={
+                    confirmPasswordValues.showPassword ? 'text' : 'password'
+                  }
                   {...register('confirm_password', { required: true })}
                   endAdornment={
                     <InputAdornment position="end">
@@ -207,7 +218,7 @@ function SignUp() {
                   }
                   label="ConfirmPassword"
                 />
-              </FormControl>  
+              </FormControl>
               <FormControl sx={{ m: 1, width: '37ch' }} variant="outlined">
                 <Stack
                   direction="row"
