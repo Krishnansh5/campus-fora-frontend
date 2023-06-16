@@ -8,18 +8,18 @@ export interface QuestionDetails {
   createdBy: string;
 }
 
-export interface Thread {
+export interface Question {
   id : number;
   createdAt : number;
   updatedAt : number;
   title : string;
   content : string;
   createdByUser : string;
-  posts : Post[];
+  posts : Answer[];
   tags : Tags[];
 }
 
-export interface Post {
+export interface Answer {
   parent_id : number;
   id : number;
   createdAt : number;

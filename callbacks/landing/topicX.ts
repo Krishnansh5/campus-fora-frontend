@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 import { SERVER_ERROR, TOPIC_X_URL, responseBody } from '@callbacks/constants';
-import { Post, Thread } from '@callbacks/types';
+import { Answer, Question } from '@callbacks/types';
 
 const instance = axios.create({
   baseURL: TOPIC_X_URL,
@@ -12,136 +12,119 @@ const instance = axios.create({
 export const TopicXLandingRequests = {
   getAll: () =>
     instance
-      .get<Thread[]>('/landing')
+      .get<Question[]>('/landing')
       .then(responseBody)
       .catch((error) => {
         console.log('error in fetching questions for topic X', error);
-        return [] as Thread[];
+        return [] as Question[];
       }),
+
   getLimited: (limit: number) =>
     instance
-      .get<Thread[]>(`/landing?limit=${limit}`)
+      .get<Question[]>(`/landing?limit=${limit}`)
       .then(responseBody)
       .catch((error) => {
         console.log('error in fetching questions for topic X', error);
-        return [] as Thread[];
-      })
-};
+        return [] as Question[];
+      }),
 
-export const createQuestion = {
-  post: () =>
+  postQuestion: () =>
     instance
       .post('/question')
       .then(responseBody)
       .catch((error) => {
         console.log('error in posting the question', error);
-      })
-};
-
-export const getThreadById = {
-  get: (id: number) =>
+      }),
+  
+  getQuestionById: (id: number) =>
     instance
-      .get<Thread>('/question:'+id)
+      .get<Question>('/question:'+id)
       .then(responseBody)
       .catch((error) => {
         console.log('error in fetching the question with id : '+ id, error);
-        return {} as Thread;
+        return {} as Question;
       }),
-};
 
-export const getAllThreads = {
-  getAll: () =>
+  getAllQuestions: () =>
     instance
-      .get<Thread[]>('/question')
+      .get<Question[]>('/question')
       .then(responseBody)
       .catch((error) => {
         console.log('error in fetching questions', error);
-        return [] as Thread[];
+        return [] as Question[];
       }),
-  getLimited: (limit: number) =>
+
+  getLimitedQuestions: (limit: number) =>
     instance
-      .get<Thread[]>(`/question?limit=${limit}`)
+      .get<Question[]>(`/question?limit=${limit}`)
       .then(responseBody)
       .catch((error) => {
         console.log('error in fetching questions', error);
-        return [] as Thread[];
-      })
-};
+        return [] as Question[];
+      }),
 
-export const deleteThread = {
-  delete: (id: number) =>
+  deleteQuestionById: (id: number) =>
     instance
-      .delete<Thread>('/question:'+id)
+      .delete<Question>('/question:'+id)
       .then(responseBody)
       .catch((error) => {
         console.log('error in deleting the question with id : '+ id, error);
       }),
-};
 
-export const updateThread = {
-  update: (id: number) =>
+  updateQuestionById: (id: number) =>
     instance
-      .put<Thread>('/question:'+id)
+      .put<Question>('/question:'+id)
       .then(responseBody)
       .catch((error) => {
         console.log('error in updating the question with id : '+ id, error);
       }),
-};
 
-export const createNewAnswer = {
   createNewAnswer: () =>
     instance
-      .post<Post>('/answer')
+      .post<Answer>('/answer')
       .then(responseBody)
       .catch((error) => {
         console.log('error in answering the question', error);
       }),
-};
 
-export const getAllPostsForThread  = {
-  getAll: () =>
+  getAllAnswersForThread: () =>
     instance
-      .get<Post>('/answer')
+      .get<Answer[]>('/answer')
       .then(responseBody)
       .catch((error) => {
         console.log('error in getting the answers', error);
-        return [] as Post[];
+        return [] as Answer[];
       }),
-  getLimited: (limit: number) =>
+
+  getLimitedAnswersForThread: (limit: number) =>
     instance
-      .get<Post[]>(`/answer?limit=${limit}`)
+      .get<Answer[]>(`/answer?limit=${limit}`)
       .then(responseBody)
       .catch((error) => {
         console.log('error in fetching posts', error);
-        return [] as Post[];
-      })
-};
+        return [] as Answer[];
+      }),
 
-export const getPostById  = {
-  get: (id: number) =>
+  getAnswerById: (id: number) =>
     instance
-      .get<Post>('/answer:'+id)
+      .get<Answer>('/answer:'+id)
       .then(responseBody)
       .catch((error) => {
         console.log('error in getting the post with id: '+id, error);
-        return {} as Post;
+        return {} as Answer;
       }),
-};
 
-export const updatePostById  = {
-  update: (id: number) =>
+  updateAnswerById: (id: number) =>
     instance
-      .put<Post>('/answer:'+id)
+      .put<Answer>('/answer:'+id)
       .then(responseBody)
       .catch((error) => {
         console.log('error in updating post with id : '+id, error);
       }),
-};
 
-export const deletePost  = {
-  delete: (id: number) =>
+  deleteAnswerById: (id: number) =>
     instance
-      .delete<Post>('/answer:'+id)
+      .delete<Answer>('/answer:'+id)
       .then(responseBody)
       .catch((error) => {
         console.log('error in deleting post with id : '+id, error);
