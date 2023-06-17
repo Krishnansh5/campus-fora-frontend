@@ -24,30 +24,19 @@ export const Button = React.forwardRef(
     ref: Ref<OrNull<HTMLSpanElement>>
   ) => (
     <span
-      style={{
-        borderRadius: "4px",
-        }}
       {...props}
       ref={ref}
       className={cx(
         className,
         css`
           cursor: pointer;
-          background-color: ${reversed
-            ? active
-              ? '#825F87'
-              : '#FF69B4'
-            : active
-            ? '#D2042D'
-            : '#800000'
-          };
           color: ${reversed
             ? active
-              ? 'black'
-              : '#ccc'
+              ? 'white'
+              : '#aaa'
             : active
-            ? 'white'
-            : '#aaa'};
+            ? 'black'
+            : '#ccc'};
         `
       )}
     />
