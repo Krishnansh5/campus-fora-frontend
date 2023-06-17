@@ -1,0 +1,11 @@
+.tired {
+    width: 100%;
+    height: auto;
+    background-color: rgb(11, 6, 87);
+    border-color:black;
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 5px;
+    display: flex;
+    padding: 5px;
+}

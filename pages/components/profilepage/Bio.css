@@ -1,0 +1,17 @@
+.bio-heading{
+    font-size: 100px;
+    display:flex;
+    font-weight: bold;
+    color: azure;
+}
+.bio-box{
+    height:auto;
+    display:flex;
+    width:100%;
+    font-size: larger;
+    background-color:rgb(11, 6, 87);
+    color: azure;
+    padding: 50px;
+    border-radius: 10px;
+    border:2px solid white;
+}

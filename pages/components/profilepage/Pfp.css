@@ -1,0 +1,9 @@
+.photo{
+    width: 250px;
+    height: 250px;
+    display: flex;
+}
+
+.photo img{
+    border-radius: 50%;
+}
