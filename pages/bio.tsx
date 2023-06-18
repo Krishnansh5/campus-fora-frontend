@@ -21,7 +21,7 @@ import { css } from '@emotion/css'
 import { withHistory } from 'slate-history'
 import FormatBoldIcon from '@mui/icons-material/FormatBold';
 
-import { Button, Icon, Menu, Portal } from '../components/layouts/HoveringToolbar/slateComponents'
+import { Button, Icon, Menu, Portal } from './components/hoveringToolbar/slateComponents'
 
 const HoveringMenuExample = () => {
   const editor = useMemo(() => withHistory(withReact(createEditor())), [])
