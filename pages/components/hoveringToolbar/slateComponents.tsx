@@ -147,6 +147,7 @@ export const Menu = React.forwardRef(
     { className, ...props }: PropsWithChildren<BaseProps>,
     ref: Ref<OrNull<HTMLDivElement>>
   ) => (
+    // <div/>
     <div
       {...props}
       data-test-id="menu"
@@ -167,11 +168,21 @@ export const Menu = React.forwardRef(
   )
 )
 
-export const Portal = ({ children }) => {
-  return typeof document === 'object'
-    ? ReactDOM.createPortal(children, document.body)
-    : null
-}
+// export const Portal = ({ children }) => {
+//   return typeof document === 'object'
+//     ? ReactDOM.createPortal(children, document.body)
+//     : null
+// }
+
+export const Portal = ({ children }: { children: React.ReactNode }) => {
+	const [portal, setPortal] = React.useState(false);
+
+	React.useEffect(() => {
+		setPortal(typeof document === 'object');
+	}, []);
+
+	return portal ? ReactDOM.createPortal(children, document.body) : null;
+};
 
 export const Toolbar = React.forwardRef(
   (
