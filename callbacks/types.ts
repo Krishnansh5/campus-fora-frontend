@@ -31,10 +31,28 @@ export interface Answer {
 }
 
 export interface Comment {
-
+  parentID: number;
+  content: string;
+  createdByUser: string
 }
 
 export interface Tags {
-  ID: number;
+  id: number;
   name: string;
+}
+export interface UserDetails {
+  userID: number;
+  name: string;
+  department: string;
+  program: string;
+  year: string;
+  gender: string;
+  hall: string;
+  hometown: string;
+  userBio: string
+}
+
+export interface ToggleStatus {
+  status: boolean;
+  id: number
 }

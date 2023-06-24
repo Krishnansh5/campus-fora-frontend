@@ -1,7 +1,8 @@
 import axios from 'axios';
 
 import { SERVER_ERROR, TOPIC_X_URL, responseBody } from '@callbacks/constants';
-import { Answer, Question } from '@callbacks/types';
+import { Answer, Question, Tags, UserDetails } from '@callbacks/types';
+import { id } from 'date-fns/locale';
 
 const instance = axios.create({
   baseURL: TOPIC_X_URL,
@@ -129,4 +130,45 @@ export const TopicXLandingRequests = {
       .catch((error) => {
         console.log('error in deleting post with id : '+id, error);
       }),
+  
+  createNewComment: (id: number) =>
+    instance
+      .post<Comment>('/comment/:'+id)
+      .then(responseBody)
+      .catch((error) => {
+        console.log('error in creating a comment in the question', error);
+      }),
+
+  getAllCommentsForAnswer: () =>
+    instance
+      .get<Comment[]>('/comment')
+      .then(responseBody)
+      .catch((error) => {
+        console.log('error in getting the comments', error);
+        return [] as Comment[];
+      }),
+
+  updateCommentById: (id: number) =>
+    instance
+      .put<Comment>('/comment/:'+id)
+      .then(responseBody)
+      .catch((error) => {
+        console.log('error in updating comment with id : '+id, error);
+      }),
+
+  deleteCommentById: (id: number) =>
+    instance
+      .delete<Comment>('/comment/:'+id)
+      .then(responseBody)
+      .catch((error) => {
+        console.log('error in deleting comment with id : '+id, error);
+      }),
+     
+  updateTagsForQuestion: (id: number) =>
+    instance
+      .put<Tags>('/question/:'+id+'/tags')
+      .then(responseBody)
+      .catch((error) => {
+        console.log('error in updating tags for question and id : '+id, error);
+      }),    
 };
