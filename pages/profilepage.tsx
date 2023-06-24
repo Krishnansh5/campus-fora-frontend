@@ -1,9 +1,10 @@
 import React from 'react';
-import { Box, Typography, Grid, Container, Button, ButtonGroup } from '@mui/material';
+import { Box, Container, Grid } from '@mui/material';
+import Divider from '@mui/material/Divider';
+
 import Pfp from './components/profilepage/Pfp';
 import Details from './components/profilepage/Details';
 import Bio from './components/profilepage/Bio';
-import Divider from '@mui/material/Divider';
 import Questionstab from './components/profilepage/Questionstab';
 
 const ProfilePage: React.FC = () => {
@@ -19,7 +20,7 @@ const ProfilePage: React.FC = () => {
           fontFamily: 'cursive',
           fontStyle: 'inherit',
           color: 'white',
-          fontWeight: 'bolder',
+          fontWeight: 'bolder'
         }}
       >
         Profile
@@ -40,7 +41,7 @@ const ProfilePage: React.FC = () => {
           marginTop: '100px',
           marginRight: '200px',
           marginLeft: '200px',
-          marginBottom: '100px',
+          marginBottom: '100px'
         }}
       >
         <Bio />
@@ -59,7 +60,7 @@ const ProfilePage: React.FC = () => {
           marginRight: '200px',
           marginTop: '100px',
           backgroundColor: 'white',
-          borderRadius: '10px',
+          borderRadius: '10px'
         }}
       >
         <Questionstab />
