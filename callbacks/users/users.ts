@@ -13,7 +13,7 @@ const instance = axios.create({
 export const FollowLandingRequests = {
   getUserDetails: (id: number) =>
     instance
-      .get<UserDetails>('/api/users/:'+id)
+      .get<UserDetails>(':'+id)
       .then(responseBody)
       .catch((error) => {
         console.log('error in fetching user with id : '+id, error);
@@ -22,7 +22,7 @@ export const FollowLandingRequests = {
 
   updateUserDetail: (id: number) =>
     instance
-      .put<UserDetails>('/api/users/:'+id)
+      .put<UserDetails>(':'+id)
       .then(responseBody)
       .catch((error) => {
         console.log('error in updating details of the user with id : '+id, error);
@@ -30,7 +30,7 @@ export const FollowLandingRequests = {
 
   updateUserBio: (id: number) =>
     instance
-      .put<string>('/api/users/:'+id + '/bio')
+      .put<string>(':'+id + '/bio')
       .then(responseBody)
       .catch((error) => {
         console.log('error in updating bio of the user with id : '+id, error);
@@ -38,10 +38,19 @@ export const FollowLandingRequests = {
 
   getAllUserAskedQuestions: (id: number) =>
     instance
-      .get<Question>('/api/users/:'+id+'/questions')
+      .get<Question>(':'+id+'/questions')
       .then(responseBody)
       .catch((error) => {
         console.log('error in fetching questions for user with id : '+id, error);
         return [] as Question[]
       }),
+
+  getNotifications: (id: number) =>
+    instance
+    .get<Notification>('/:'+id+'/notification')
+    .then(responseBody)
+    .catch((error) => {
+        console.log('error in fetching notifications for user with id : '+id, error);
+        return [] as Notification[]
+    }),
 }

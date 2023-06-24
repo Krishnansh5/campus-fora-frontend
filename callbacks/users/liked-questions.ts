@@ -13,7 +13,7 @@ const instance = axios.create({
 export const LikeLandingRequests = {
     getAllUserLikedQuestions: (id: number) =>
     instance
-      .get<Question>('/api/likes/user/liked')
+      .get<Question>('user/liked')
       .then(responseBody)
       .catch((error) => {
         console.log('error in fetching questions liked by user with id : '+id, error);
