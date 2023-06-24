@@ -46,11 +46,6 @@ const ProfilePage: React.FC = () => {
       >
         <Bio />
       </Box>
-      {/* <Box className='buttons'>
-      <ButtonGroup  variant="outlined" color="secondary" aria-label="medium secondary button group">
-        <Button>My Questions</Button>
-        <Button>Starred Questions</Button>
-      </ButtonGroup></Box> */}
       <Box sx={{ paddingLeft: '220px', paddingRight: '220px' }}>
         <Divider variant="middle" style={{ backgroundColor: '#01579b' }} />
       </Box>
