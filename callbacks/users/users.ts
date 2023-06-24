@@ -11,7 +11,7 @@ const instance = axios.create({
 });
 
 export const FollowLandingRequests = {
-  getAllUserDetails: (id: number) =>
+  getUserDetails: (id: number) =>
     instance
       .get<UserDetails>('/api/users/:'+id)
       .then(responseBody)
