@@ -1,4 +1,4 @@
-.details-box{
+/* .details-box{
     height: auto;
     width: 250px;
     display: flex;
@@ -17,6 +17,33 @@
 }
 
 .fields{
+    font-size: 20px;
+    margin-left: 10px;
+    margin-top: 10px;
+}
+ */
+ .details-box {
+    height: auto;
+    width: 100%;
+    max-width: 400px; /* Set a maximum width to prevent the container from becoming too wide */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 10px;
+    box-sizing: border-box; /* Include padding and border in the total width/height */
+}
+
+.details {
+    font-size: 15px;
+    color: blanchedalmond;
+    margin: 5px 0; /* Increase the margin for better readability */
+}
+
+.details > div {
+    margin: 5px 0; /* Increase the margin for better spacing between the elements */
+}
+
+.fields {
     font-size: 20px;
     margin-left: 10px;
     margin-top: 10px;

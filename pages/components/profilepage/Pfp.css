@@ -1,9 +1,21 @@
-.photo{
+/* .photo{
     width: 250px;
     height: 250px;
     display: flex;
 }
 
 .photo img{
+    border-radius: 50%;
+} */
+
+.photo {
+    width: 20vw;
+    height: auto;
+    display: flex;
+}
+
+.photo img {
+    width: 100%;
+    height: auto;
     border-radius: 50%;
 }
