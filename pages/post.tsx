@@ -426,17 +426,20 @@ const Home = () => {
                     </Typography>
                 </CardActions>
                 </Collapse>
+                <Tooltip arrow title={commentsExpanded ? "Hide Comments" : "Show Comments"}>
                 <IconButton
                 onClick={handleCommentsExpandClick}
                 aria-expanded={commentsExpanded}
-                aria-label="show more"
+                aria-label="comments"
               >
                 { commentsExpanded ? <ExpandLessIcon /> : <ExpandMoreIcon />}
               </IconButton>
+                </Tooltip>
             </StyledExpandedContent>
             </CardContent>
             </Collapse>
-            <CardActions disableSpacing>
+            <CardActions disableSpacing style={{ justifyContent: 'right' }}>
+            <Tooltip arrow title={expanded ? "Show Less" : "Show More"}>
               <IconButton
                 onClick={handleExpandClick}
                 aria-expanded={expanded}
@@ -444,6 +447,7 @@ const Home = () => {
               >
                 { expanded ? <ExpandLessIcon /> : <ExpandMoreIcon />}
               </IconButton>
+              </Tooltip>
             </CardActions>
           </StyledAnswerCard>
         </StyledAnswerContainer>
