@@ -11,7 +11,8 @@ import {
   Tabs,
   Button,
   styled,
-  useTheme
+  useTheme,
+  Pagination
 } from '@mui/material';
 import { keyframes } from "@emotion/css"
 
@@ -123,6 +124,7 @@ const TabsContainerWrapper = styled(Box)(
 function Home() {
 	const {currentTopic} = useContext(SidebarContext);
 	const [loading, setLoading] = useState(true);
+	const [paginationNum, setPaginationNum] = useState(1);
 	
 	useEffect(() => {
 		(async () => {
@@ -148,7 +150,7 @@ function Home() {
 		answers: 69,
 	}));
 	
-	const postsRepeated = Array(...new Array(20)).map(el => posts[0]); //first element of post repeated 20 times s
+	const postsRepeated = [...Array(50).keys()].map(el => ({...posts[0], author: `Joe Mama ${el}`})); //first element of post repeated 20 times but with different user
  
 	return (
 		<Box sx={{p: 3}}>
@@ -162,15 +164,10 @@ function Home() {
 				rowGap: "10px",
 				alignItems: "center",
 			}}>
-				{loading ?
-				 (<div className="loading" style={{
-				 	width: "75px",
-				 	height: "75px",
-				 	border: `5px ${theme.colors.primary.main} dashed`,
-				 	borderRadius: "75px",
-				 	animation: `${loadingAnimation} 0.5s linear infinite`
-				 }} />)
-				: postsRepeated.map(el => <Q_Card {...el}/>)}
+				{postsRepeated.map(el => <Q_Card {...el}/>).slice(5*(paginationNum - 1), 5*paginationNum)}
+				<Pagination count={Math.round(postsRepeated.length/5)} page={paginationNum} onChange={(event, value) => {
+					setPaginationNum(value);
+				}} />
 			</Grid>
 			<Grid item xs={0} lg={4} sx={{
 				paddingLeft: "0px",
