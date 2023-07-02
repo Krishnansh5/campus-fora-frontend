@@ -35,13 +35,13 @@ export const TopicXLandingRequests = {
       .catch((error) => {
         console.log('error in posting the question', error);
       }),
-  
+
   getQuestionById: (id: number) =>
     instance
-      .get<Question>('/question:'+id)
+      .get<Question>('/question:' + id)
       .then(responseBody)
       .catch((error) => {
-        console.log('error in fetching the question with id : '+ id, error);
+        console.log('error in fetching the question with id : ' + id, error);
         return {} as Question;
       }),
 
@@ -65,18 +65,18 @@ export const TopicXLandingRequests = {
 
   deleteQuestionById: (id: number) =>
     instance
-      .delete<Question>('/question:'+id)
+      .delete<Question>('/question:' + id)
       .then(responseBody)
       .catch((error) => {
-        console.log('error in deleting the question with id : '+ id, error);
+        console.log('error in deleting the question with id : ' + id, error);
       }),
 
   updateQuestionById: (id: number) =>
     instance
-      .put<Question>('/question:'+id)
+      .put<Question>('/question:' + id)
       .then(responseBody)
       .catch((error) => {
-        console.log('error in updating the question with id : '+ id, error);
+        console.log('error in updating the question with id : ' + id, error);
       }),
 
   createNewAnswer: () =>
@@ -107,26 +107,26 @@ export const TopicXLandingRequests = {
 
   getAnswerById: (id: number) =>
     instance
-      .get<Answer>('/answer:'+id)
+      .get<Answer>('/answer:' + id)
       .then(responseBody)
       .catch((error) => {
-        console.log('error in getting the post with id: '+id, error);
+        console.log('error in getting the post with id: ' + id, error);
         return {} as Answer;
       }),
 
   updateAnswerById: (id: number) =>
     instance
-      .put<Answer>('/answer:'+id)
+      .put<Answer>('/answer:' + id)
       .then(responseBody)
       .catch((error) => {
-        console.log('error in updating post with id : '+id, error);
+        console.log('error in updating post with id : ' + id, error);
       }),
 
   deleteAnswerById: (id: number) =>
     instance
-      .delete<Answer>('/answer:'+id)
+      .delete<Answer>('/answer:' + id)
       .then(responseBody)
       .catch((error) => {
-        console.log('error in deleting post with id : '+id, error);
-      }),
+        console.log('error in deleting post with id : ' + id, error);
+      })
 };

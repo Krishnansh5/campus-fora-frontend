@@ -1,0 +1,27 @@
+/* .tired {
+    width: 100%;
+    height: auto;
+    background-color: rgb(11, 6, 87);
+    border-color:black;
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 5px;
+    display: flex;
+    padding: 5px;
+} */
+.tired {
+    width: 100%;
+    max-width: 400px; /* Set a maximum width to prevent the container from becoming too wide */
+    height: auto;
+    background-color: rgb(11, 6, 87);
+    border-color: black;
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 5px;
+    display: flex;
+    flex-wrap: wrap; /* Allow the content to wrap to multiple lines */
+    justify-content: space-between; /* Distribute items along the main axis with space between */
+    align-items: center; /* Align items vertically at the center */
+    padding: 5px;
+    box-sizing: border-box; /* Include padding and border in the total width/height */
+}
