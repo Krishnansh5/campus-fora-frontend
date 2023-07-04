@@ -9,25 +9,25 @@ export interface QuestionDetails {
 }
 
 export interface Question {
-  id : number;
-  createdAt : number;
-  updatedAt : number;
-  title : string;
-  content : string;
-  createdByUser : string;
-  posts : Answer[];
-  tags : Tags[];
+  id: number;
+  createdAt: number;
+  updatedAt: number;
+  title: string;
+  content: string;
+  createdByUser: string;
+  posts: Answer[];
+  tags: Tags[];
 }
 
 export interface Answer {
-  parent_id : number;
-  id : number;
-  createdAt : number;
-  updatedAt : number;
-  content : string;
-  isAnswer : boolean;
-  createdByUser : string;
-  comments : Comment[];
+  parent_id: number;
+  id: number;
+  createdAt: number;
+  updatedAt: number;
+  content: string;
+  isAnswer: boolean;
+  createdByUser: string;
+  comments: Comment[];
 }
 
 export interface Comment {

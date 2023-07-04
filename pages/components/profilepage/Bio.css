@@ -1,0 +1,14 @@
+.bio-heading {
+    /* font-size: 4vw; */
+    font-size: calc(16.6px + 2vw);
+    color: azure;
+    margin-top: 0;
+    margin-bottom: 2px;
+  }
+  
+  .bio-text {
+    font-size: calc(15px+1.5vw);
+    color:azure;
+    margin-top: 0;
+  }
+  

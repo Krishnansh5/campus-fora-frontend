@@ -1,0 +1,11 @@
+.photo {
+    width: 20vw;
+    height: auto;
+    display: flex;
+}
+
+.photo img {
+    width: 100%;
+    height: auto;
+    border-radius: 50%;
+}
