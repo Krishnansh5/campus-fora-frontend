@@ -9,31 +9,36 @@ export interface QuestionDetails {
 }
 
 export interface Question {
-  id: number;
-  createdAt: number;
-  updatedAt: number;
+  topicId: number;
+  uuid: string;
+  createdAt: string;
+  updatedAt: string;
   title: string;
   content: string;
-  createdByUser: string;
-  posts: Answer[];
+  createdByUserId: number;
+  createdByUserName: string;
+  answers: Answer[];
   tags: Tags[];
 }
 
 export interface Answer {
-  parent_id: number;
-  id: number;
-  createdAt: number;
-  updatedAt: number;
+  parentId: number;
+  uuid: string;
+  createdAt: string;
+  updatedAt: string;
   content: string;
   isAnswer: boolean;
-  createdByUser: string;
+  createdByUserId: number;
+  createdByUserName: string;
   comments: Comment[];
 }
 
 export interface Comment {
   parentID: number;
+  uuid: string;
   content: string;
-  createdByUser: string
+  createdByUser: number;
+  createdByUserName: string;
 }
 
 export interface Tags {
@@ -49,15 +54,15 @@ export interface UserDetails {
   gender: string;
   hall: string;
   hometown: string;
-  userBio: string
+  userBio: string;
 }
 
 export interface ToggleStatus {
   status: boolean;
-  id: number
+  id: number;
 }
 
 export interface Notification {
   title: string;
-  body: string
+  body: string;
 }
