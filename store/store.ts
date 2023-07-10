@@ -5,13 +5,13 @@ import { persist } from 'zustand/middleware';
 interface StateType {
   role: number;
   token: string;
-  userID: string;
+  userID: number;
   name: string;
   notificationToken: string;
   receiveNotification: boolean;
   setRole: (role: number) => void;
   setToken: (token: string) => void;
-  setUserID: (user_id: string) => void;
+  setUserID: (userID: number) => void;
   setName: (name: string) => void;
   setNotificationToken: (notificationToken: string) => void;
   setReceiveNotification: (receiveNotification: boolean) => void;
@@ -22,8 +22,8 @@ const useStore = create<StateType>()(
     (set, get) => ({
       role: 0 || get()?.role,
       setRole: (role: number) => set({ role }),
-      userID: '' || get()?.userID,
-      setUserID: (userID: string) => set({ userID }),
+      userID: 0 || get()?.userID,
+      setUserID: (userID: number) => set({ userID }),
       token: '' || get()?.token,
       setToken: (token: string) => set({ token }),
       name: '' || get()?.name,
