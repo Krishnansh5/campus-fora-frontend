@@ -1,12 +1,13 @@
-import React, { Ref, PropsWithChildren } from 'react'
-import ReactDOM from 'react-dom'
-import { cx, css } from '@emotion/css'
+/* eslint-disable react/jsx-props-no-spreading */
+import React, { PropsWithChildren, Ref } from 'react';
+import ReactDOM from 'react-dom';
+import { css, cx } from '@emotion/css';
 
 interface BaseProps {
-  className: string
-  [key: string]: unknown
+  className: string;
+  [key: string]: unknown;
 }
-type OrNull<T> = T | null
+type OrNull<T> = T | null;
 
 export const Button = React.forwardRef(
   (
@@ -17,42 +18,32 @@ export const Button = React.forwardRef(
       ...props
     }: PropsWithChildren<
       {
-        active: boolean
-        reversed: boolean
+        active: boolean;
+        reversed: boolean;
       } & BaseProps
     >,
     ref: Ref<OrNull<HTMLSpanElement>>
   ) => (
     <span
-      style={{
-        borderRadius: "4px",
-        }}
       {...props}
       ref={ref}
       className={cx(
         className,
         css`
           cursor: pointer;
-          background-color: ${reversed
-            ? active
-              ? '#825F87'
-              : '#FF69B4'
-            : active
-            ? '#D2042D'
-            : '#800000'
-          };
           color: ${reversed
             ? active
-              ? 'black'
-              : '#ccc'
+              ? 'white'
+              : '#aaa'
             : active
-            ? 'white'
-            : '#aaa'};
+            ? 'black'
+            : '#ccc'};
         `
       )}
     />
   )
-)
+);
+Button.displayName = 'Hovering-Toolabar-Button';
 
 export const EditorValue = React.forwardRef(
   (
@@ -62,15 +53,15 @@ export const EditorValue = React.forwardRef(
       ...props
     }: PropsWithChildren<
       {
-        value: any
+        value: any;
       } & BaseProps
     >,
     ref: Ref<OrNull<null>>
   ) => {
     const textLines = value.document.nodes
-      .map(node => node.text)
+      .map((node) => node.text)
       .toArray()
-      .join('\n')
+      .join('\n');
     return (
       <div
         ref={ref}
@@ -107,9 +98,10 @@ export const EditorValue = React.forwardRef(
           {textLines}
         </div>
       </div>
-    )
+    );
   }
-)
+);
+EditorValue.displayName = 'Hovering-Toolbar-EditorValue';
 
 export const Icon = React.forwardRef(
   (
@@ -129,7 +121,8 @@ export const Icon = React.forwardRef(
       )}
     />
   )
-)
+);
+Icon.displayName = 'Hovering-Toolbar-Icon';
 
 export const Instruction = React.forwardRef(
   (
@@ -151,13 +144,15 @@ export const Instruction = React.forwardRef(
       )}
     />
   )
-)
+);
+Instruction.displayName = 'Hovering-Toolbar-Instruction';
 
 export const Menu = React.forwardRef(
   (
     { className, ...props }: PropsWithChildren<BaseProps>,
     ref: Ref<OrNull<HTMLDivElement>>
   ) => (
+    // <div/>
     <div
       {...props}
       data-test-id="menu"
@@ -176,13 +171,24 @@ export const Menu = React.forwardRef(
       )}
     />
   )
-)
+);
+Menu.displayName = 'Hovering-Toolbar-Menu';
 
-export const Portal = ({ children }) => {
-  return typeof document === 'object'
-    ? ReactDOM.createPortal(children, document.body)
-    : null
-}
+// export const Portal = ({ children }) => {
+//   return typeof document === 'object'
+//     ? ReactDOM.createPortal(children, document.body)
+//     : null
+// }
+
+export const Portal = ({ children }: { children: React.ReactNode }) => {
+  const [portal, setPortal] = React.useState(false);
+
+  React.useEffect(() => {
+    setPortal(typeof document === 'object');
+  }, []);
+
+  return portal ? ReactDOM.createPortal(children, document.body) : null;
+};
 
 export const Toolbar = React.forwardRef(
   (
@@ -204,4 +210,5 @@ export const Toolbar = React.forwardRef(
       )}
     />
   )
-)
+);
+Toolbar.displayName = 'Hovering-Toolbar-Toolbar';

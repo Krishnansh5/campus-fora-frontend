@@ -27,6 +27,7 @@ import Projects from '@/content/Dashboards/Tasks/Projects';
 import Checklist from '@/content/Dashboards/Tasks/Checklist';
 import Profile from '@/content/Dashboards/Tasks/Profile';
 import TaskSearch from '@/content/Dashboards/Tasks/TaskSearch';
+<<<<<<< HEAD
 import Q_Card from "@/components/QuestionCard";
 import {SidebarContext} from "@/contexts/SidebarContext"
 
@@ -38,6 +39,9 @@ const loadingAnimation = keyframes`
 		transform: rotate(360deg);
 	}
 `;
+=======
+import NotifToggle from '@components/notifications/notification-toggle';
+>>>>>>> krishnansh/main
 
 const TabsContainerWrapper = styled(Box)(
   ({ theme }) => `
@@ -136,6 +140,7 @@ function Home() {
 	},[currentTopic])
   const theme = useTheme();
 
+<<<<<<< HEAD
 	const posts = [{
 		question: "What does the fox say?",
 		answer: `${"lol ".repeat(20)}`,
@@ -300,6 +305,124 @@ function Home() {
 //       <Footer />
 //     </>
 //   );
+=======
+  const [currentTab, setCurrentTab] = useState<string>('analytics');
+
+  const tabs = [
+    { value: 'analytics', label: 'Analytics Overview' },
+    { value: 'taskSearch', label: 'Task Search' }
+  ];
+
+  // eslint-disable-next-line @typescript-eslint/ban-types
+  const handleTabsChange = (_event: ChangeEvent<{}>, value: string): void => {
+    setCurrentTab(value);
+  };
+
+  return (
+    <>
+      <Head>
+        <title>Tasks Dashboard</title>
+      </Head>
+      <PageTitleWrapper>
+        <PageHeader />
+      </PageTitleWrapper>
+      <Container maxWidth="lg">
+        <NotifToggle />
+        <TabsContainerWrapper>
+          <Tabs
+            onChange={handleTabsChange}
+            value={currentTab}
+            variant="scrollable"
+            scrollButtons="auto"
+            textColor="primary"
+            indicatorColor="primary"
+          >
+            {tabs.map((tab) => (
+              <Tab key={tab.value} label={tab.label} value={tab.value} />
+            ))}
+          </Tabs>
+        </TabsContainerWrapper>
+        <Card variant="outlined">
+          <Grid
+            container
+            direction="row"
+            justifyContent="center"
+            alignItems="stretch"
+            spacing={0}
+          >
+            {currentTab === 'analytics' && (
+              <>
+                <Grid item xs={12}>
+                  <Box p={4}>
+                    <TeamOverview />
+                  </Box>
+                </Grid>
+                <Grid item xs={12}>
+                  <Divider />
+                  <Box
+                    p={4}
+                    sx={{
+                      background: `${theme.colors.alpha.black[5]}`
+                    }}
+                  >
+                    <Grid container spacing={4}>
+                      <Grid item xs={12} sm={6} md={8}>
+                        <TasksAnalytics />
+                      </Grid>
+                      <Grid item xs={12} sm={6} md={4}>
+                        <Performance />
+                      </Grid>
+                    </Grid>
+                  </Box>
+                  <Divider />
+                </Grid>
+                <Grid item xs={12}>
+                  <Box p={4}>
+                    <Projects />
+                  </Box>
+                  <Divider />
+                </Grid>
+                <Grid item xs={12}>
+                  <Box
+                    sx={{
+                      background: `${theme.colors.alpha.black[5]}`
+                    }}
+                  >
+                    <Grid container spacing={0}>
+                      <Grid item xs={12} md={6}>
+                        <Box
+                          p={4}
+                          sx={{
+                            background: `${theme.colors.alpha.white[70]}`
+                          }}
+                        >
+                          <Checklist />
+                        </Box>
+                      </Grid>
+                      <Grid item xs={12} md={6}>
+                        <Box p={4}>
+                          <Profile />
+                        </Box>
+                      </Grid>
+                    </Grid>
+                  </Box>
+                </Grid>
+              </>
+            )}
+            {currentTab === 'taskSearch' && (
+              <Grid item xs={12}>
+                <Box p={4}>
+                  <TaskSearch />
+                </Box>
+              </Grid>
+            )}
+          </Grid>
+        </Card>
+      </Container>
+      <Footer />
+    </>
+  );
+>>>>>>> krishnansh/main
 }
 
 Home.layout = 'mainPage';
