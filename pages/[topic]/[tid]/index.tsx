@@ -65,7 +65,7 @@ function Topic() {
       ? (<>
         <Box sx={{m:1}}><QuestionCard {...question} /></Box>
         <Box sx={{m:1}}><Card>
-          <h1 stle={{margin: "10px"}}>Comments</h1>
+          <h1 style={{margin: "10px"}}>Comments</h1>
           {comments.map(el => (<CommentCard {...el} />))}
         </Card></Box>
         </>)

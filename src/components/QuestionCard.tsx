@@ -4,6 +4,16 @@ import { ArrowUpward as ArrowUpwardIcon, ArrowDownward as ArrowDownwardIcon, Cha
 import VotesCounter from '@/components/Upvotes';
 
 //note: timePosted should be unix epoch time - calcTime turns this into relative time
+interface QuestionCardProps {
+    question:string;
+    answer:string;
+    author:string;
+    upvotes:number;
+    comments:number;
+    authorImage?:string;
+    timePosted:number | string;
+}
+
 const QuestionCard = ({
     question,
     answer,
