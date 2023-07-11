@@ -48,7 +48,7 @@ function Login() {
     setToken('');
     setRole(0);
     setName('');
-    setUserID('');
+    setUserID(0);
   }, [setName, setRole, setToken, setUserID]);
 
   const onLogin = async (data: LoginParams) => {

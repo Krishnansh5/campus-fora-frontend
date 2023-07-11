@@ -25,7 +25,6 @@ import UserAvatar from '@components/avatar/userAvatar';
 import { Answer } from '@callbacks/posts/type';
 import { Comment } from '@callbacks/posts/type';
 import { QuestionPageRequests } from '@callbacks/posts/question';
-import useStore from '@/store/store';
 import { getTimeDifference } from 'utils/time-utils';
 import { votingRequests } from '@callbacks/likes/voting';
 
@@ -54,7 +53,6 @@ interface VoteStatus {
 }
 
 export default function AnswerCard({ answer }: { answer: Answer }) {
-  const { name, userID } = useStore();
   const [commentValue, setCommentValue] = useState('');
   const [reqPending, setReqPending] = useState(false);
   const [expanded, setExpanded] = useState(false);
@@ -151,8 +149,8 @@ export default function AnswerCard({ answer }: { answer: Answer }) {
     if (commentValue === '' || reqPending) return;
     const reqBody: Comment = {
       content: commentValue,
-      createdByUserId: userID,
-      createdByUserName: name,
+      createdByUserId: 0,
+      createdByUserName: '',
       parentID: answer.uuid,
       uuid: '',
       CreatedAt: '',
