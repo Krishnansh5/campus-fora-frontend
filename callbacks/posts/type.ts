@@ -11,7 +11,7 @@ export interface QuestionDetails {
 export interface Question {
   topicId: number;
   uuid: string;
-  createdAt: string;
+  CreatedAt: string;
   updatedAt: string;
   title: string;
   content: string;
@@ -24,8 +24,8 @@ export interface Question {
 export interface Answer {
   parentId: number;
   uuid: string;
-  createdAt: string;
-  updatedAt: string;
+  CreatedAt: string;
+  UpdatedAt: string;
   content: string;
   isAnswer: boolean;
   createdByUserId: number;
@@ -34,35 +34,16 @@ export interface Answer {
 }
 
 export interface Comment {
-  parentID: number;
+  parentID: string;
   uuid: string;
   content: string;
-  createdByUser: number;
+  createdByUserId: number;
   createdByUserName: string;
+  CreatedAt: string;
+  UpdatedAt: string;
 }
 
 export interface Tags {
   id: number;
   name: string;
-}
-export interface UserDetails {
-  userID: number;
-  name: string;
-  department: string;
-  program: string;
-  year: string;
-  gender: string;
-  hall: string;
-  hometown: string;
-  userBio: string;
-}
-
-export interface ToggleStatus {
-  status: boolean;
-  id: number;
-}
-
-export interface Notification {
-  title: string;
-  body: string;
 }

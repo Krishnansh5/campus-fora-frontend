@@ -1,5 +1,6 @@
 import React from 'react';
 import Head from 'next/head';
+import Link from 'next/link';
 import { ChangeEvent, useState } from 'react';
 import {
   Box,
@@ -133,6 +134,20 @@ function Home() {
       </PageTitleWrapper>
       <Container maxWidth="lg">
         <NotifToggle />
+        <Link
+          href={{
+            pathname: '/topic/1/18bfd314-72e8-43f1-84f1-3442c9368467',
+            query: {
+              ansIds: [
+                'cbce9662-7af9-4fc0-ab95-ed16ff4df6d4',
+                'fcab7a3e-27a7-446e-8ef8-005678ba25aa',
+                '432aa560-a471-4e0e-9a4d-894144699974'
+              ]
+            }
+          }}
+        >
+          <a>post page</a>
+        </Link>
         <TabsContainerWrapper>
           <Tabs
             onChange={handleTabsChange}
