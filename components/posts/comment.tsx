@@ -1,10 +1,10 @@
 import React from 'react';
 import TodayTwoToneIcon from '@mui/icons-material/TodayTwoTone';
 import { CardActions, Typography } from '@mui/material';
-import { formatDistance, subDays } from 'date-fns';
 
 import UserAvatar from '@components/avatar/userAvatar';
-import { Comment } from '@callbacks/types';
+import { Comment } from '@callbacks/posts/type';
+import { getTimeDifference } from 'utils/time-utils';
 
 export default function CommentDisplay({ comment }: { comment: Comment }) {
   return (
@@ -31,9 +31,7 @@ export default function CommentDisplay({ comment }: { comment: Comment }) {
             mr: 1
           }}
         />
-        {formatDistance(subDays(new Date(), 24), new Date(), {
-          addSuffix: true
-        })}
+        {getTimeDifference(comment?.CreatedAt)}
       </Typography>
     </CardActions>
   );

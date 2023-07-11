@@ -12,7 +12,7 @@ import {
   Typography,
   styled
 } from '@mui/material';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   ExpandLess as ExpandLessIcon,
   ExpandMore as ExpandMoreIcon
@@ -22,7 +22,11 @@ import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import AddCommentIcon from '@mui/icons-material/AddComment';
 
 import UserAvatar from '@components/avatar/userAvatar';
-import { Answer } from '@callbacks/types';
+import { Answer } from '@callbacks/posts/type';
+import { Comment } from '@callbacks/posts/type';
+import { QuestionPageRequests } from '@callbacks/posts/question';
+import { getTimeDifference } from 'utils/time-utils';
+import { votingRequests } from '@callbacks/likes/voting';
 
 import CommentDisplay from './comment';
 
@@ -38,7 +42,19 @@ const StyledExpandedContent = styled('div')`
   margin-top: ${({ theme }) => theme.spacing(2)};
 `;
 
+interface VoteCount {
+  upvotes: number;
+  downvotes: number;
+}
+
+interface VoteStatus {
+  upvoted: boolean;
+  downvoted: boolean;
+}
+
 export default function AnswerCard({ answer }: { answer: Answer }) {
+  const [commentValue, setCommentValue] = useState('');
+  const [reqPending, setReqPending] = useState(false);
   const [expanded, setExpanded] = useState(false);
   const handleExpandClick = () => {
     setExpanded(!expanded);
@@ -49,34 +65,103 @@ export default function AnswerCard({ answer }: { answer: Answer }) {
     setCommentsExpanded(!commentsExpanded);
   };
 
-  const [votes, setVotes] = useState(0);
-  const [upvoted, setUpvoted] = useState(false);
-  const [downvoted, setDownvoted] = useState(false);
+  const [votes, setVotes] = useState<VoteCount>({
+    upvotes: 0,
+    downvotes: 0
+  });
+  const [voteStatus, setVoteStatus] = useState<VoteStatus>({
+    upvoted: false,
+    downvoted: false
+  });
   const handleUpvoteClick = () => {
-    if (upvoted) {
-      setUpvoted(false);
-      setVotes((prevVotes) => prevVotes - 1);
-    } else if (downvoted) {
-      setUpvoted(true);
-      setDownvoted(false);
-      setVotes((prevVotes) => prevVotes + 2);
+    if (voteStatus.upvoted) {
+      setVoteStatus({ upvoted: false, downvoted: false });
+      setVotes((prevVotes) => ({
+        upvotes: prevVotes.upvotes - 1,
+        downvotes: prevVotes.downvotes
+      }));
+      votingRequests.updateLikeStatus(0, answer.uuid);
+    } else if (voteStatus.downvoted) {
+      setVoteStatus({ upvoted: true, downvoted: false });
+      setVotes((prevVotes) => ({
+        upvotes: prevVotes.upvotes + 1,
+        downvotes: prevVotes.downvotes - 1
+      }));
+      votingRequests.updateLikeStatus(1, answer.uuid);
     } else {
-      setUpvoted(true);
-      setVotes((prevVotes) => prevVotes + 1);
+      setVoteStatus({ upvoted: true, downvoted: false });
+      setVotes((prevVotes) => ({
+        upvotes: prevVotes.upvotes + 1,
+        downvotes: prevVotes.downvotes
+      }));
+      votingRequests.updateLikeStatus(1, answer.uuid);
     }
   };
   const handleDownvoteClick = () => {
-    if (downvoted) {
-      setDownvoted(false);
-      setVotes((prevVotes) => prevVotes + 1);
-    } else if (upvoted) {
-      setUpvoted(false);
-      setDownvoted(true);
-      setVotes((prevVotes) => prevVotes - 2);
+    if (voteStatus.downvoted) {
+      setVoteStatus({ upvoted: false, downvoted: false });
+      setVotes((prevVotes) => ({
+        upvotes: prevVotes.upvotes,
+        downvotes: prevVotes.downvotes - 1
+      }));
+      votingRequests.updateLikeStatus(0, answer.uuid);
+    } else if (voteStatus.upvoted) {
+      setVoteStatus({ upvoted: false, downvoted: true });
+      setVotes((prevVotes) => ({
+        upvotes: prevVotes.upvotes - 1,
+        downvotes: prevVotes.downvotes + 1
+      }));
+      votingRequests.updateLikeStatus(-1, answer.uuid);
     } else {
-      setDownvoted(true);
-      setVotes((prevVotes) => prevVotes - 1);
+      setVoteStatus({ upvoted: false, downvoted: true });
+      setVotes((prevVotes) => ({
+        upvotes: prevVotes.upvotes,
+        downvotes: prevVotes.downvotes + 1
+      }));
+      votingRequests.updateLikeStatus(-1, answer.uuid);
     }
+  };
+
+  useEffect(() => {
+    const getVoteStatus = async () => {
+      const res = await votingRequests.getUserLikeStatus(answer.uuid);
+      if (res != null) {
+        setVoteStatus({
+          upvoted: res === 1,
+          downvoted: res === -1
+        });
+      }
+    };
+    const getVoteCount = async () => {
+      const res = await votingRequests.getLikeCount(answer.uuid);
+      if (res != null) {
+        setVotes({
+          upvotes: res.likeCount,
+          downvotes: res.dislikeCount
+        });
+      }
+    };
+    getVoteCount();
+    getVoteStatus();
+  }, [answer?.uuid]);
+
+  const addComment = async () => {
+    if (commentValue === '' || reqPending) return;
+    const reqBody: Comment = {
+      content: commentValue,
+      createdByUserId: 0,
+      createdByUserName: '',
+      parentID: answer.uuid,
+      uuid: '',
+      CreatedAt: '',
+      UpdatedAt: ''
+    };
+    const res = await QuestionPageRequests.createNewComment(reqBody);
+    if (res != null) {
+      answer.comments.push(res);
+      setCommentValue('');
+    }
+    setReqPending(false);
   };
 
   return (
@@ -95,7 +180,7 @@ export default function AnswerCard({ answer }: { answer: Answer }) {
               <Grid item>
                 <div>
                   <IconButton onClick={handleUpvoteClick}>
-                    {upvoted ? (
+                    {voteStatus.upvoted ? (
                       <ArrowDropUpIcon color="primary" />
                     ) : (
                       <ArrowDropUpIcon />
@@ -103,12 +188,18 @@ export default function AnswerCard({ answer }: { answer: Answer }) {
                   </IconButton>
                   <Typography
                     variant="subtitle2"
-                    style={{ marginLeft: '14px' }}
+                    style={{ marginLeft: '14px', color: '#009900' }}
                   >
-                    {votes}
+                    {votes.upvotes}
+                  </Typography>
+                  <Typography
+                    variant="subtitle2"
+                    style={{ marginLeft: '14px', color: '#ff0066' }}
+                  >
+                    {votes.downvotes}
                   </Typography>
                   <IconButton onClick={handleDownvoteClick}>
-                    {downvoted ? (
+                    {voteStatus.downvoted ? (
                       <ArrowDropDownIcon color="primary" />
                     ) : (
                       <ArrowDropDownIcon />
@@ -117,12 +208,12 @@ export default function AnswerCard({ answer }: { answer: Answer }) {
                 </div>
               </Grid>
               <Grid item>
-                <UserAvatar userName={answer.createdByUserName} />
+                <UserAvatar userName={answer?.createdByUserName} />
               </Grid>
             </Grid>
           }
-          title={answer.createdByUserName}
-          subheader="Answered at: May 30, 2023" //get proper date from utiliity function
+          title={answer?.createdByUserName}
+          subheader={`Answered ${getTimeDifference(answer.CreatedAt)}`}
         />
         <Collapse in={expanded} timeout="auto" unmountOnExit>
           <CardContent>
@@ -134,7 +225,7 @@ export default function AnswerCard({ answer }: { answer: Answer }) {
               }}
             >
               <Typography variant="body1" color="text.secondary">
-                {answer.content}
+                {answer?.content}
               </Typography>
               <Box
                 sx={{
@@ -144,21 +235,30 @@ export default function AnswerCard({ answer }: { answer: Answer }) {
                   alignItems: 'flex-end'
                 }}
               >
-                <AddCommentIcon
-                  sx={{ color: 'action.active', mr: 1, my: 0.5 }}
-                />
+                <IconButton
+                  onClick={() => {
+                    setReqPending(true);
+                    addComment();
+                  }}
+                >
+                  <AddCommentIcon
+                    sx={{ color: 'action.active', mr: 1, my: 0.5 }}
+                  />
+                </IconButton>
                 <TextField
                   fullWidth
                   id="filled-basic"
                   label="Add a comment"
                   variant="standard"
+                  value={commentValue}
+                  onChange={(e) => setCommentValue(e.target.value)}
                 />
               </Box>
               <Typography variant="h4" style={{ marginTop: '16px' }}>
                 Comments
               </Typography>
               <Collapse in={commentsExpanded} timeout="auto" unmountOnExit>
-                {answer.comments.map((comment) => (
+                {answer?.comments?.map((comment) => (
                   <CommentDisplay comment={comment} />
                 ))}
               </Collapse>

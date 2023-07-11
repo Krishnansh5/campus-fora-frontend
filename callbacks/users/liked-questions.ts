@@ -1,8 +1,7 @@
 import axios from 'axios';
 
-import { FOLLOW_URL, LIKE_URL, SERVER_ERROR, TOPIC_X_URL, responseBody } from '@callbacks/constants';
-import { Answer, Question, UserDetails } from '@callbacks/types';
-import { id } from 'date-fns/locale';
+import { Question } from '@callbacks/posts/type';
+import { LIKE_URL, SERVER_ERROR, responseBody } from '@callbacks/constants';
 
 const instance = axios.create({
   baseURL: LIKE_URL,
@@ -11,12 +10,15 @@ const instance = axios.create({
 });
 
 export const LikeLandingRequests = {
-    getAllUserLikedQuestions: (id: number) =>
+  getAllUserLikedQuestions: (id: number) =>
     instance
       .get<Question>('user/liked')
       .then(responseBody)
       .catch((error) => {
-        console.log('error in fetching questions liked by user with id : '+id, error);
-        return [] as Question[]
-      }),
-}
+        console.log(
+          'error in fetching questions liked by user with id : ' + id,
+          error
+        );
+        return [] as Question[];
+      })
+};

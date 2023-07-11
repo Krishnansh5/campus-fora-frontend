@@ -17,7 +17,7 @@ export default function NotifToggle() {
     console.log('saving new notification token');
     await FCM.saveNotifToken(
       token,
-      parseInt(userID),
+      userID,
       localStorage.getItem('deviceId')
     ).then((res) => {
       setNotificationToken(res);
@@ -33,14 +33,14 @@ export default function NotifToggle() {
       token !== undefined &&
       token !== '' &&
       userID !== undefined &&
-      userID !== '' &&
+      userID !== 0 &&
       localStorage.getItem('deviceId') !== null &&
       localStorage.getItem('deviceId') !== ''
     ) {
       console.log('saving new notification token');
       await FCM.saveNotifToken(
         token,
-        parseInt(userID),
+        userID,
         localStorage.getItem('deviceId')
       ).then((res) => {
         setNotificationToken(res);
@@ -56,7 +56,7 @@ export default function NotifToggle() {
   const handleUnsubscribe = async () => {
     await FCM.deleteNotificatoionToken(
       token,
-      parseInt(userID),
+      userID,
       localStorage.getItem('deviceId')
     ).then((res) => {
       if (res !== null) {
@@ -70,13 +70,13 @@ export default function NotifToggle() {
       token !== undefined &&
       token !== '' &&
       userID !== undefined &&
-      userID !== '' &&
+      userID !== 0 &&
       localStorage.getItem('deviceId') !== null &&
       localStorage.getItem('deviceId') !== ''
     ) {
       await FCM.deleteNotificatoionToken(
         token,
-        parseInt(userID),
+        userID,
         localStorage.getItem('deviceId')
       ).then((res) => {
         if (res !== null) {

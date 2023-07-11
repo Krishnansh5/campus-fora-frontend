@@ -61,9 +61,7 @@ function App(props: TokyoAppProps) {
   async function getNotifToken() {
     const deviceID = localStorage.getItem('deviceId');
     // const notifToken = await saveNotifToken(token, parseInt(userID), messaging);
-    setNotificationToken(
-      await FCM.saveNotifToken(token, parseInt(userID), deviceID)
-    );
+    setNotificationToken(await FCM.saveNotifToken(token, userID, deviceID));
   }
 
   useEffect(() => {
@@ -106,7 +104,7 @@ function App(props: TokyoAppProps) {
       token !== undefined &&
       token !== '' &&
       userID !== undefined &&
-      userID !== '' &&
+      userID !== 0 &&
       localStorage.getItem('deviceId') !== null &&
       localStorage.getItem('deviceId') !== ''
     ) {
