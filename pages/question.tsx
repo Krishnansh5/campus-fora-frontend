@@ -5,68 +5,74 @@ import {
   Card,
   CardContent,
   Chip,
-  FormControl,
   Grid,
-  InputLabel,
-  MenuItem,
-  Select,
-  SelectChangeEvent,
   Stack,
   TextField
 } from '@mui/material';
 import Fuse from 'fuse.js';
 import * as React from 'react';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useCallback } from 'react';
+import { useMemo } from 'react';
 
+import { createQuestionRequests } from '@callbacks/createQuestion/createQuestion';
+import { Tags } from '@callbacks/posts/type';
+import useStore from '@/store/store';
 import SlateTextEditor from '@components/text-editor/slateTextEditor';
 
-import characters from './characters.json';
+export default function CreateQuestion() {
+  const { topicID } = useStore();
 
-// const tags = ['EE792', 'ESC201', 'ESO210/MSO212', 'John Smith'];
-
-export default function Question() {
-  const [topic, setTopic] = useState('');
-
-  function handleChange(event: SelectChangeEvent) {
-    setTopic(event.target.value as string);
-  }
-
-  const handleDelete = () => {
-    console.info('You clicked the delete icon.');
-  };
-
-  // const fuseOptions = {
-  //   keys: ['tag'],
-  //   threshold: 0.3 // Adjust this value to control the fuzzy search sensitivity
-  // };
-  // const fuse = new Fuse(
-  //   tags.map((tag) => ({ tag })),
-  //   fuseOptions
-  // );
+  const [tags, setTags] = useState<Tags[]>([]);
+  const [tagList, setTagList] = useState<Tags[]>([]);
+  const [selectedTags, setSelectedTags] = useState<Tags[]>([]);
 
   const [query, setQuery] = useState('');
-  const fuse = new Fuse(characters, {
-    keys: ['name']
-  });
+  const fuse = useMemo(
+    () =>
+      new Fuse(tags, {
+        keys: ['name']
+      }),
+    [tags]
+  );
 
-  const results = fuse.search('');
-  const characterResults = query
-    ? results.map((result) => result.item)
-    : characters;
+  const fuzzySearch = useCallback(
+    (newQuery: string) => {
+      const res = fuse?.search(newQuery);
+      const results = newQuery?.length
+        ? res?.map((result) => result.item)
+        : tags;
+      const filteredResults = results.filter(
+        (tag) => !selectedTags.includes(tag)
+      );
+      setTagList(filteredResults);
+    },
+    [fuse, selectedTags, tags]
+  );
 
-  function handleOnSearch(event: React.ChangeEvent<HTMLInputElement>) {
-    const { value } = event.currentTarget;
+  function handleOnSelect(value: string) {
     setQuery(value);
+    fuzzySearch(value);
   }
 
-  // type Tag = {
-  //   id: number;
-  //   label: string;
-  // };
+  function handleOnChange(e, value: Tags) {
+    e.preventDefault();
+    setQuery('');
+    setSelectedTags([...selectedTags, value]);
+  }
 
-  // type TopicWiseTags = {
-  //   topicTags: Tag[];
-  // };
+  function handleRemoveTag(tag: Tags) {
+    setSelectedTags(selectedTags.filter((t) => t !== tag));
+  }
+
+  useEffect(() => {
+    const getAllTags = async () => {
+      const res = await createQuestionRequests.getAllTags(topicID);
+      setTags(res);
+      setTagList(res);
+    };
+    getAllTags();
+  }, [topicID]);
 
   return (
     <div>
@@ -85,7 +91,7 @@ export default function Question() {
         >
           <CardContent>
             <Grid container alignItems="center">
-              <Grid item xs={8} md={4}>
+              {/* <Grid item xs={8} md={4}>
                 <Box sx={{ minWidth: 120, marginBottom: 2 }}>
                   <FormControl fullWidth>
                     <InputLabel id="demo-simple-select-label">Topic</InputLabel>
@@ -102,7 +108,7 @@ export default function Question() {
                     </Select>
                   </FormControl>
                 </Box>
-              </Grid>
+              </Grid> */}
               <Grid item xs={12}>
                 {/* <TextField
                   fullWidth
@@ -131,38 +137,32 @@ export default function Question() {
               }}
             >
               <Box>
-                <Chip label="EE210" size="small" onDelete={handleDelete}></Chip>
-                <Chip
-                  label="ESC201"
-                  size="small"
-                  onDelete={handleDelete}
-                ></Chip>
-                <Chip
-                  label="MSO202"
-                  size="small"
-                  onDelete={handleDelete}
-                ></Chip>
+                {selectedTags.map((tag) => (
+                  <Chip
+                    key={tag.id}
+                    label={tag.name}
+                    size="small"
+                    onDelete={() => handleRemoveTag(tag)}
+                  ></Chip>
+                ))}
               </Box>
               <Box sx={{ marginLeft: '10px' }}>
-                {/* <Stack maxWidth="250px">
-                  <Autocomplete
-                    options={tags}
-                    renderInput={(params) => (
-                      <TextField {...params} label="Tags" />
-                    )}
-                  />
-                </Stack> */}
                 <Stack maxWidth="250px">
                   <Autocomplete
-                    options={characterResults} // Use the characterResults instead of tags
-                    getOptionLabel={(option) => option.name} // Set the label field according to your character object structure
+                    options={tagList}
+                    getOptionLabel={(option) => option.name}
+                    filterOptions={(x) => x}
+                    value={null}
                     renderInput={(params) => (
-                      <TextField
-                        {...params}
-                        label="Tags"
-                        onChange={handleOnSearch}
-                      /> // Add onChange event handler to capture the input value
+                      <TextField {...params} label="Tags" value={query} />
                     )}
+                    filterSelectedOptions
+                    clearOnEscape
+                    onChange={handleOnChange}
+                    onSelect={(e) => {
+                      e.preventDefault();
+                      handleOnSelect((e.target as HTMLInputElement).value);
+                    }}
                   />
                 </Stack>
               </Box>
