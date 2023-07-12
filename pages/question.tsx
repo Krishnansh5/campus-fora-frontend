@@ -18,10 +18,9 @@ import Fuse from 'fuse.js';
 import * as React from 'react';
 import { useState } from 'react';
 
-import characters from './characters.json';
 import SlateTextEditor from '@components/text-editor/slateTextEditor';
-import { BorderAll, Margin } from '@mui/icons-material';
-import { green } from '@mui/material/colors';
+
+import characters from './characters.json';
 
 // const tags = ['EE792', 'ESC201', 'ESO210/MSO212', 'John Smith'];
 
