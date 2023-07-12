@@ -18,6 +18,7 @@ import { useMemo } from 'react';
 import { createQuestionRequests } from '@callbacks/createQuestion/createQuestion';
 import { Tags } from '@callbacks/posts/type';
 import useStore from '@/store/store';
+import SlateTextEditor from '@components/text-editor/slateTextEditor';
 
 export default function CreateQuestion() {
   const { topicID } = useStore();
@@ -82,7 +83,8 @@ export default function CreateQuestion() {
       >
         <Card
           sx={{
-            width: { xs: '280px', sm: '450px', md: '600px' },
+            width: { xs: '280px', sm: '450px', md: '1200px' },
+            minHeight: { xs: '400px', sm: '400px', md: '600px' },
             marginLeft: { xs: '25px', sm: '25px', md: '0' },
             marginRight: { xs: '25px', sm: '25px', md: '0' }
           }}
@@ -108,13 +110,23 @@ export default function CreateQuestion() {
                 </Box>
               </Grid> */}
               <Grid item xs={12}>
-                <TextField
+                {/* <TextField
                   fullWidth
                   multiline
                   variant="outlined"
                   minRows={6}
                   placeholder="Type Your Question Here"
-                />
+                /> */}
+                <Box
+                  sx={{
+                    margin: 1,
+                    border: '1px solid grey',
+                    borderRadius: 0.5,
+                    minHeight: { xs: '200px', sm: '450px', md: '500px' }
+                  }}
+                >
+                  <SlateTextEditor />
+                </Box>
               </Grid>
             </Grid>
             <Box
