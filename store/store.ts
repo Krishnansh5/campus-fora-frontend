@@ -7,12 +7,14 @@ interface StateType {
   token: string;
   userID: number;
   name: string;
+  topicID: number;
   notificationToken: string;
   receiveNotification: boolean;
   setRole: (role: number) => void;
   setToken: (token: string) => void;
   setUserID: (userID: number) => void;
   setName: (name: string) => void;
+  setTopicID: (topicID: number) => void;
   setNotificationToken: (notificationToken: string) => void;
   setReceiveNotification: (receiveNotification: boolean) => void;
 }
@@ -28,6 +30,8 @@ const useStore = create<StateType>()(
       setToken: (token: string) => set({ token }),
       name: '' || get()?.name,
       setName: (name: string) => set({ name }),
+      topicID: 1 || get()?.topicID,
+      setTopicID: (topicID: number) => set({ topicID }),
       notificationToken: '' || get()?.notificationToken,
       setNotificationToken: (notificationToken: string) =>
         set({ notificationToken }),
