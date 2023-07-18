@@ -18,7 +18,8 @@ import { useMemo } from 'react';
 import { createQuestionRequests } from '@callbacks/createQuestion/createQuestion';
 import { Tags } from '@callbacks/posts/type';
 import useStore from '@/store/store';
-import SlateTextEditor from '@components/text-editor/slateTextEditor';
+
+import TextEditor from '../components/text-editor/hoveringTextEditor';
 
 export default function CreateQuestion() {
   const { topicID } = useStore();
@@ -117,16 +118,17 @@ export default function CreateQuestion() {
                   minRows={6}
                   placeholder="Type Your Question Here"
                 /> */}
-                <Box
+                {/* <Box
                   sx={{
                     margin: 1,
                     border: '1px solid grey',
                     borderRadius: 0.5,
-                    minHeight: { xs: '200px', sm: '450px', md: '500px' }
+                    minHeight: { xs: '20px', sm: '450px', md: '500px' }
                   }}
                 >
-                  <SlateTextEditor />
-                </Box>
+                  <BioPage />
+                </Box> */}
+                <TextEditor />
               </Grid>
             </Grid>
             <Box
