@@ -14,6 +14,8 @@ import {
   Portal
 } from '@components/text-editor/hoveringToolbar/slateComponents';
 
+import MentionExample from './mentions';
+
 interface CustomText extends Text {
   text: string;
   bold?: boolean;
@@ -178,6 +180,7 @@ const TextEditor = () => {
           }
         />
         <Slate editor={editor} value={initialValue}>
+          <MentionExample />
           <HoveringToolbar />
           <Editable
             renderLeaf={(props) => <Leaf {...props} />}
