@@ -1,5 +1,8 @@
 /* eslint-disable react/jsx-props-no-spreading */
 /* eslint-disable @typescript-eslint/no-use-before-define */
+
+// Text Editor with Mentions and hovering toolbar
+
 import React, {
   useCallback,
   useEffect,
@@ -18,6 +21,8 @@ import {
   useSelected,
   withReact
 } from 'slate-react';
+
+import { HoveringToolbar } from './hoveringToolbar';
 
 type CustomText = {
   bold?: boolean;
@@ -48,7 +53,7 @@ const initialValue: CustomElement[] = [
   }
 ];
 
-const MentionExample = () => {
+const TextEditor = () => {
   const ref = useRef<HTMLDivElement | null>();
   const [target, setTarget] = useState<Range | undefined>();
   const [index, setIndex] = useState(0);
@@ -135,6 +140,7 @@ const MentionExample = () => {
         setTarget(null);
       }}
     >
+      <HoveringToolbar />
       <Editable
         renderElement={renderElement}
         renderLeaf={renderLeaf}
@@ -209,25 +215,26 @@ const insertMention = (editor, character) => {
   Transforms.move(editor);
 };
 
-// Borrow Leaf renderer from the Rich Text example.
-// In a real project you would get this via `withRichText(editor)` or similar.
 const Leaf = ({ attributes, children, leaf }) => {
   if (leaf.bold) {
     children = <strong>{children}</strong>;
-  }
-
-  if (leaf.code) {
-    children = <code>{children}</code>;
   }
 
   if (leaf.italic) {
     children = <em>{children}</em>;
   }
 
-  if (leaf.underline) {
+  if (leaf.bullets) {
+    children = <li>{children}</li>;
+  }
+
+  if (leaf.underlined) {
     children = <u>{children}</u>;
   }
 
+  if (leaf.code) {
+    children = <code>{children}</code>;
+  }
   return <span {...attributes}>{children}</span>;
 };
 
@@ -273,56 +280,6 @@ const Mention = ({ attributes, children, element }) => {
     </span>
   );
 };
-
-// const initialValue: Descendant[] = [
-//   {
-//     type: 'paragraph',
-//     children: [
-//       {
-//         text: 'This example shows how you might implement a simple '
-//       },
-//       {
-//         text: '@-mentions',
-//         bold: true
-//       },
-//       {
-//         text: ' feature that lets users autocomplete mentioning a user by their username. Which, in this case means Star Wars characters. The '
-//       },
-//       {
-//         text: 'mentions',
-//         bold: true
-//       },
-//       {
-//         text: ' are rendered as '
-//       },
-//       {
-//         text: 'void inline elements',
-//         code: true
-//       },
-//       {
-//         text: ' inside the document.'
-//       }
-//     ]
-//   },
-//   {
-//     type: 'paragraph',
-//     children: [
-//       { text: 'Try mentioning characters, like ' },
-//       {
-//         type: 'mention',
-//         character: 'R2-D2',
-//         children: [{ text: '', bold: true }]
-//       },
-//       { text: ' or ' },
-//       {
-//         type: 'mention',
-//         character: 'Mace Windu',
-//         children: [{ text: '' }]
-//       },
-//       { text: '!' }
-//     ]
-//   }
-// ];
 
 const CHARACTERS = [
   'Aayla Secura',
@@ -730,4 +687,4 @@ const CHARACTERS = [
   'Zuckuss'
 ];
 
-export default MentionExample;
+export default TextEditor;

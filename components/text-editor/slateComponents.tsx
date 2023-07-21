@@ -1,4 +1,7 @@
 /* eslint-disable react/jsx-props-no-spreading */
+
+// Basic Slate Components
+
 import React, { PropsWithChildren, Ref } from 'react';
 import ReactDOM from 'react-dom';
 import { css, cx } from '@emotion/css';
@@ -53,6 +56,7 @@ export const EditorValue = React.forwardRef(
       ...props
     }: PropsWithChildren<
       {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         value: any;
       } & BaseProps
     >,
