@@ -20,7 +20,7 @@ import {
   Icon,
   Menu,
   Portal
-} from '@components/text-editor/hoveringToolbar/slateComponents';
+} from '@components/text-editor/slateComponents';
 
 interface CustomText extends Text {
   text: string;
