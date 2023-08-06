@@ -6,10 +6,10 @@ import Head from 'next/head';
 import Router from 'next/router';
 // eslint-disable-next-line import/order
 import nProgress from 'nprogress';
-import './components/profilepage/Details.css';
-import './components/profilepage/Pfp.css';
-import './components/profilepage/Bio.css';
-import './components/profilepage/DetailsField.css';
+import '../components/profilepage/Details.css';
+import '../components/profilepage/Pfp.css';
+import '../components/profilepage/Bio.css';
+import '../components/profilepage/DetailsField.css';
 
 import 'nprogress/nprogress.css';
 import CssBaseline from '@mui/material/CssBaseline';

@@ -6,7 +6,6 @@ import {
   Card,
   CardContent,
   CardHeader,
-  Checkbox,
   Divider,
   FormControl,
   FormHelperText,
@@ -26,6 +25,7 @@ import useStore from '@/store/store';
 import { LoginParams } from '@callbacks/auth/types';
 import Meta from '@/components/Meta';
 import loginRequest from '@callbacks/auth/login';
+import whoami from '@callbacks/auth/whoami';
 
 function Login() {
   const router = useRouter();
@@ -54,14 +54,20 @@ function Login() {
   const onLogin = async (data: LoginParams) => {
     setLoading(true);
     const response = await loginRequest.post(data);
-    if (response.token !== '') {
-      setToken(response.token);
-      setRole(response.role_id);
+    if (response.access_token !== '') {
+      setToken(response.access_token);
+      const whoamiResponse = await whoami.get(response.access_token);
+      if (whoamiResponse === null) {
+        return;
+      }
+      setName(whoamiResponse.name);
+      setUserID(whoamiResponse.id);
+      setRole(whoamiResponse.role);
       reset({
-        user_id: '',
+        email: '',
         password: ''
       });
-      router.push('/main');
+      router.push('/1');
     }
     setLoading(false);
   };
@@ -116,15 +122,15 @@ function Login() {
               sx={{ minHeight: '40vh' }}
             >
               <FormControl sx={{ m: 1, width: '35ch' }} variant="outlined">
-                <InputLabel htmlFor="Email ID" error={!!errors.user_id}>
+                <InputLabel htmlFor="Email ID" error={!!errors.email}>
                   Email ID
                 </InputLabel>
                 <OutlinedInput
                   id="Email ID"
                   label="Email ID"
-                  error={!!errors.user_id}
+                  error={!!errors.email}
                   // helperText={errors.user_id ? "Incorrect Email ID" : ""}
-                  {...register('user_id', {
+                  {...register('email', {
                     required: true,
                     pattern: /^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$/,
                     setValueAs: (value) => value.trim()
@@ -165,7 +171,7 @@ function Login() {
                   </FormHelperText>
                 )}
               </FormControl>
-              <FormControl sx={{ m: 1, width: '37ch' }} variant="outlined">
+              {/* <FormControl sx={{ m: 1, width: '37ch' }} variant="outlined">
                 <Stack
                   direction="row"
                   justifyContent="space-between"
@@ -185,7 +191,7 @@ function Login() {
                     </span>
                   </Typography>
                 </Stack>
-              </FormControl>
+              </FormControl> */}
               <FormControl sx={{ m: 1, width: '35ch' }} variant="outlined">
                 <LoadingButton
                   loading={loading}

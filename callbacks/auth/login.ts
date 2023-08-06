@@ -26,7 +26,7 @@ const loginRequest = {
       .then(responseBody)
       .catch((err: ErrorType) => {
         console.log('Error in logging in', err);
-        return { user_id: '', token: '', role_id: 0 } as LoginResponse;
+        return { status: 'fail', access_token: '' } as LoginResponse;
       })
 };
 

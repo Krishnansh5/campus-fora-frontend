@@ -24,7 +24,7 @@ import { useRouter } from 'next/router';
 import useStore from '@/store/store';
 import { SignupParams } from '@callbacks/auth/types';
 import Meta from '@/components/Meta';
-import loginRequest from '@callbacks/auth/login';
+import signup from '@callbacks/auth/signup';
 
 function SignUp() {
   const router = useRouter();
@@ -57,16 +57,13 @@ function SignUp() {
 
   const onSignup = async (data: SignupParams) => {
     setLoading(true);
-    const response = await loginRequest.post(data);
-    if (response.token !== '') {
-      setToken(response.token);
-      setRole(response.role_id);
-      reset({
-        user_id: '',
-        password: ''
-      });
-      router.push('/main');
+    const response = await signup.post(data);
+    if (response === null) {
+      setLoading(false);
+      return;
     }
+    reset();
+    router.push('/verification');
     setLoading(false);
   };
 
