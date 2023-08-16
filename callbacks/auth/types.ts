@@ -7,11 +7,12 @@ export interface LoginParams {
 export interface LoginResponse {
   status: string;
   access_token: string;
+  role_id: number;
 }
 
 export interface SignupParams {
-  user_id: string;
-  email_id: string;
+  name: string;
+  email: string;
   password: string;
   confirm_password: string;
   bio: string;

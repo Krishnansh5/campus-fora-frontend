@@ -1,4 +1,4 @@
-import { Typography } from '@mui/material';
+import { CircularProgress, Typography } from '@mui/material';
 import { useRouter } from 'next/router';
 import React, { useEffect } from 'react';
 
@@ -27,9 +27,10 @@ export default function VerificationPending() {
   }, [verificationCode]);
   return (
     <div>
-      {loading && (
+      {loading && <CircularProgress />}
+      {!loading && (
         <>
-          <Typography variant="h2">Verification {status + 'ed'}</Typography>
+          <Typography variant="h2">Verification {status}</Typography>
           <Typography variant="h4">{message}</Typography>
         </>
       )}

@@ -3,9 +3,6 @@ dist
 .next
 build
 node_modules/
-pages/applications/*
-/pages/components/*
-/pages/dashboards/*
-/pages/management/*
-/pages/status/*
+/pages/template/*
 src/
+components/profilepage

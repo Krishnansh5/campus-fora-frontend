@@ -25,7 +25,6 @@ import useStore from '@/store/store';
 import { LoginParams } from '@callbacks/auth/types';
 import Meta from '@/components/Meta';
 import loginRequest from '@callbacks/auth/login';
-import whoami from '@callbacks/auth/whoami';
 
 function Login() {
   const router = useRouter();
@@ -54,20 +53,14 @@ function Login() {
   const onLogin = async (data: LoginParams) => {
     setLoading(true);
     const response = await loginRequest.post(data);
-    if (response.access_token !== '') {
+    if (response && response.access_token !== '') {
       setToken(response.access_token);
-      const whoamiResponse = await whoami.get(response.access_token);
-      if (whoamiResponse === null) {
-        return;
-      }
-      setName(whoamiResponse.name);
-      setUserID(whoamiResponse.id);
-      setRole(whoamiResponse.role);
+      setRole(response.role_id);
       reset({
         email: '',
         password: ''
       });
-      router.push('/1');
+      router.push('topic/1');
     }
     setLoading(false);
   };
@@ -171,27 +164,27 @@ function Login() {
                   </FormHelperText>
                 )}
               </FormControl>
-              {/* <FormControl sx={{ m: 1, width: '37ch' }} variant="outlined">
+              <FormControl sx={{ m: 1, width: '37ch' }} variant="outlined">
                 <Stack
                   direction="row"
                   justifyContent="space-between"
                   alignItems="center"
                 >
-                  <Typography variant="subtitle2" color="text.secondary">
+                  {/* <Typography variant="subtitle2" color="text.secondary">
                     <Checkbox
                       size="small"
                       {...register('remember_me')}
                       inputProps={{ 'aria-label': 'controlled' }}
                     />
                     Remember Me
-                  </Typography>
+                  </Typography> */}
                   <Typography variant="subtitle2" color="text.secondary">
                     <span>
                       <Link href="/reset-password">Forgot password?</Link>
                     </span>
                   </Typography>
                 </Stack>
-              </FormControl> */}
+              </FormControl>
               <FormControl sx={{ m: 1, width: '35ch' }} variant="outlined">
                 <LoadingButton
                   loading={loading}

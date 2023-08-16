@@ -1,7 +1,7 @@
 import { Card, CardContent, Chip, Stack, Typography } from '@mui/material';
 import React from 'react';
 
-import { Question } from '@callbacks/types';
+import { Question } from '@callbacks/posts/type';
 
 export default function questionDetailsCard({
   question

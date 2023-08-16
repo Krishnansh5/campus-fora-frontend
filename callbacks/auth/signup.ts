@@ -30,14 +30,15 @@ const signup = {
       }),
   verify: (verificationCode: string) =>
     authInstance
-      .get<VerifyEmailResponse>(`/verifyemail/${verificationCode}`)
+      .get(`/verifyemail/${verificationCode}`)
       .then(responseBody)
       .catch((err: ErrorType) => {
+        console.log(err)
         console.error(
           'Error in verifying email',
           err?.response?.data?.error || err?.message
         );
-        return null;
+        return err?.response?.data;
       })
 };
 
