@@ -20,12 +20,13 @@ import StarIcon from '@mui/icons-material/Star';
 import TodayTwoToneIcon from '@mui/icons-material/TodayTwoTone';
 import StarBorderIcon from '@mui/icons-material/StarBorder';
 // import { formatDistance, subDays } from 'date-fns';
+// import Snackbar from '@mui/material/Snackbar';
 import ThumbUpIcon from '@mui/icons-material/ThumbUp';
 import ThumbUpOffAltIcon from '@mui/icons-material/ThumbUpOffAlt';
 import ThumbDownIcon from '@mui/icons-material/ThumbDown';
 import ThumbDownOffAltIcon from '@mui/icons-material/ThumbDownOffAlt';
 
-import { Question } from '@callbacks/posts/type';
+import { Answer, Question } from '@callbacks/posts/type';
 import UserAvatar from '@components/avatar/userAvatar';
 import { getTimeDifference } from 'utils/time-utils';
 import { QuestionPageRequests } from '@callbacks/posts/question';
@@ -54,6 +55,9 @@ export default function QuestionCard({
 }) {
   const theme = useTheme();
   const [follow, setFollow] = useState(false);
+  const [currentQuestion, setCurrentQuestion] = useState<Question | null>(
+    question
+  );
   const updateFollowStatus = async () => {
     const res = await QuestionPageRequests.updateQuestionFollowStatus(
       question?.uuid
@@ -156,6 +160,46 @@ export default function QuestionCard({
     fetchFollowStatus();
   }, [question?.uuid]);
 
+  const [showAnswerWindow, setShowAnswerWindow] = useState(false);
+  const [answerContent, setAnswerContent] = useState('');
+  const [reqPending, setReqPending] = useState(false);
+  // const [confirmationMessage, setConfirmationMessage] = useState('');
+
+  const handleAnswerClick = async () => {
+    setShowAnswerWindow(!showAnswerWindow);
+  };
+
+  const submitAnswer = async () => {
+    console.log('submitAnswer function called');
+    if (!question) return;
+    if (answerContent === '' || reqPending) return;
+    const reqBody: Answer = {
+      parentId: question.uuid,
+      content: answerContent,
+      uuid: '',
+      CreatedAt: '',
+      UpdatedAt: '',
+      isAnswer: true,
+      createdByUserId: 0,
+      createdByUserName: '',
+      comments: []
+    };
+    console.log(question.uuid);
+    console.log(reqBody);
+    try {
+      const res = await QuestionPageRequests.createNewAnswer(reqBody);
+      if (res != null) {
+        const updatedQuestion = { ...currentQuestion };
+        updatedQuestion.answers = updatedQuestion.answers || [];
+        updatedQuestion.answers.push(res);
+        setCurrentQuestion(updatedQuestion);
+        setAnswerContent('');
+      }
+    } catch (error) {
+      console.error('Error submitting answer:', error);
+    }
+    setReqPending(false);
+  };
   return (
     <StyledQuestionContainer>
       <Card
@@ -266,12 +310,55 @@ export default function QuestionCard({
                 </Typography>
               </Button>
             </Stack>
-            <Tooltip title="Report This Question">
-              <IconButton color="secondary" aria-label="report">
-                <ReportIcon />
-              </IconButton>
-            </Tooltip>
+            <Stack direction="row" spacing={1}>
+              <Button
+                size="small"
+                variant="contained"
+                onClick={handleAnswerClick}
+              >
+                <Typography variant="button">
+                  {showAnswerWindow ? 'Cancel Answer' : 'Create Answer'}
+                </Typography>
+              </Button>
+              <Tooltip title="Report This Question">
+                <IconButton color="secondary" aria-label="report">
+                  <ReportIcon />
+                </IconButton>
+              </Tooltip>
+            </Stack>
           </Box>
+          {showAnswerWindow && (
+            <div
+              style={{
+                background: theme.palette.background.paper,
+                padding: '10px'
+              }}
+            >
+              <textarea
+                rows={4}
+                cols={50}
+                placeholder="Write your answer here..."
+                style={{
+                  background: theme.palette.background.paper,
+                  width: '100%',
+                  border: '0px solid',
+                  borderColor: theme.palette.divider,
+                  padding: '5px',
+                  outline: 'none'
+                }}
+                value={answerContent}
+                onChange={(e) => setAnswerContent(e.target.value)}
+              />
+              <Button
+                variant="contained"
+                color="primary"
+                onClick={submitAnswer}
+              >
+                Submit Answer
+              </Button>
+            </div>
+          )}
+
           <Typography variant="subtitle1">
             Number of Answers: {ansCount}
           </Typography>
