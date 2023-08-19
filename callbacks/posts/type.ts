@@ -22,7 +22,7 @@ export interface Question {
 }
 
 export interface Answer {
-  parentId: number;
+  parentId: string;
   uuid: string;
   CreatedAt: string;
   UpdatedAt: string;
